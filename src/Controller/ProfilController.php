@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\EditProfileType;
 use App\Form\EditProfilType;
+use App\Repository\ParticipantRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -77,9 +78,9 @@ class ProfilController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="delete")
      */
-    public function delete($id, UserRepository $userRepository ):RedirectResponse
+    public function delete($id, ParticipantRepository $participantRepository ):RedirectResponse
     {
-        $user = $userRepository->find($id);
+        $user = $participantRepository->find($id);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
