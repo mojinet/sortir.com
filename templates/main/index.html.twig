@@ -3,7 +3,13 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur le site sortir.com le meilleur site du monde</h1>
-    <p>ou le deuxieme mais a as grand chose pret</p>
-    <p>ou le troisieme mais  pas sûr</p>
+<h2>Filtrer les sortie</h2>
+    <p>Todo...</p>
+
+<h2>Liste des sorties</h2>
+    {% for sortie in sorties %}{
+        {{ sortie.nom }}
+    {% else %}
+        <p>Aucune sortie de prévu !</p>
+    {% endfor %}
 {% endblock %}
