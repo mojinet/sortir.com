@@ -5,4 +5,17 @@
 {% block body %}
 
     <h1>Page du profil</h1>
+
+    <h1>Mon profil</h1>
+    <p>Pseudo : {{ app.user.pseudo }}</p>
+    <p>{{ app.user.prenom }} {{ app.user.nom }}</p>
+    <p>Mail : {{ app.user.email }}</p>
+    <img src="{{ asset('img/miniature/' ~ app.user.photoProfil) }}" alt="" class="article-miniature">
+
+    <h2>Modification</h2>
+    <div class="panelButton">
+        <button><a href="{{ path('profil_modify') }}">Modifier le profil</a> </button>
+        <button><a href="{{ path('profil_modifyPassword') }}">Modifier le Mot de passe</a> </button>
+        <button><a href="{{ path('profil_delete', {'id': app.user.id }) }}" onclick="return confirm('Voulez vous supprimer votre compte')">Supprimer le profil </a> </button>
+    </div>
 {% endblock %}
