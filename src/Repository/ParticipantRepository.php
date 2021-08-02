@@ -37,15 +37,15 @@ class ParticipantRepository extends ServiceEntityRepository implements PasswordU
         $this->_em->flush();
     }
 
-    public function loadUserByUsername(string $pseudoOrEmail)  :?User
+    public function loadUserByUsername(string $pseudoOrEmail)  :?Participant
     {
         $entityManager = $this->getEntityManager();
 
         return $entityManager->createQuery(
-            'SELECT u
-            FROM App\Entity\User u
-            WHERE u.pseudo = :query
-            OR u.email = :query'
+            'SELECT p
+            FROM App\Entity\Participant p
+            WHERE p.pseudo = :query
+            OR p.email = :query'
         )
             ->setParameter('query', $pseudoOrEmail)
             ->getOneOrNullResult();
