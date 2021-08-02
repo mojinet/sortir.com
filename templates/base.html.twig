@@ -23,6 +23,8 @@
                     <li><a href="{{ path('main_home') }}">Accueil</a></li>
                     {% if app.user %}
                         <li><a href="{{ path('profil_home') }}">Mon profil</a></li>
+                        <li><a href="{{ path('profil_home') }}">Créer une sortie</a></li>
+                        <li><a href="{{ path('profil_home') }}">Sortie</a></li>
 
                         {% if is_granted("ROLE_ADMIN") %}
                             <li><a href="{{ path('admin_home') }}">Admin</a></li>
