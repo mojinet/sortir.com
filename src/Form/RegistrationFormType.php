@@ -19,6 +19,10 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('pseudo', null,[
+                'label' => 'Pseudo',
+                'required' => true
+            ])
             ->add('nom', null,[
                 'label' => 'Nom',
                 'required' => true
