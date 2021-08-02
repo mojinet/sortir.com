@@ -25,7 +25,8 @@ class Participant implements UserInterface
     private $id;
 
     /**
-     * @Assert/Email(message = "votre e-mail est invalide")
+     * @Assert\Email(message = "votre e-mail est invalide")
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -42,8 +43,8 @@ class Participant implements UserInterface
     private $password;
 
     /**
-     *@Assert\NotBlank()
-     *@Assert\Length(
+     * @Assert\NotBlank()
+     * @Assert\Length(
      *      min = 2,
      *      max = 60,
      *      minMessage = "Votre nom doit etre de {{ limit }} caracteres minimum",
@@ -54,8 +55,8 @@ class Participant implements UserInterface
     private $nom;
 
     /**
-     *@Assert\NotBlank()
-     *@Assert\Length(
+     * @Assert\NotBlank()
+     * @Assert\Length(
      *      min = 2,
      *      max = 60,
      *      minMessage = "Votre prenom doit etre de {{ limit }} caracteres minimum",
@@ -90,6 +91,11 @@ class Participant implements UserInterface
      * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="particpants")
      */
     private $campus;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $pseudo;
 
     public function __construct()
     {
@@ -263,6 +269,18 @@ class Participant implements UserInterface
     public function setCampus(?Campus $campus): self
     {
         $this->campus = $campus;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
