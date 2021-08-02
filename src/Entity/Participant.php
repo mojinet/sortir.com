@@ -8,10 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ParticipantRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Un compte avec cet e-mail existe déjà")
+ * @UniqueEntity(fields={"pseudo"}, message="Un compte avec ce pseudo existe déjà")
  */
 class Participant implements UserInterface
 {
@@ -23,6 +25,7 @@ class Participant implements UserInterface
     private $id;
 
     /**
+     * @Assert/Email(message = "votre e-mail est invalide")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -39,16 +42,36 @@ class Participant implements UserInterface
     private $password;
 
     /**
+     *@Assert\NotBlank()
+     *@Assert\Length(
+     *      min = 2,
+     *      max = 60,
+     *      minMessage = "Votre nom doit etre de {{ limit }} caracteres minimum",
+     *      maxMessage = "Votre nom ne doit pas depasser {{ limit }} caracteres"
+     * )
      * @ORM\Column(type="string", length=60)
      */
     private $nom;
 
     /**
+     *@Assert\NotBlank()
+     *@Assert\Length(
+     *      min = 2,
+     *      max = 60,
+     *      minMessage = "Votre prenom doit etre de {{ limit }} caracteres minimum",
+     *      maxMessage = "Votre prenom ne doit pas depasser {{ limit }} caracteres",     *
+     * )
      * @ORM\Column(type="string", length=60)
      */
     private $prenom;
 
     /**
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 10,
+     *      minMessage = "Votre numero doit etre de {{ limit }} caracteres minimum",
+     *      maxMessage = "Votre prenom ne doit pas depasser {{ limit }} caracteres",     *
+     * )
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $telephone;
