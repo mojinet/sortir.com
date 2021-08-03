@@ -3,34 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <script src="{{ asset('js/app.js') }}" defer></script>
         <title>{% block title %}Welcome!{% endblock %}</title>
     </head>
     <body>
-        <header class="l_header">
-            <h1><a href="{{ path('main_home') }}">Sortir.com</a></h1>
-            <nav class="header_nav">
-                <ul>
-                    <li><a href="{{ path('main_home') }}">Accueil</a></li>
-                    {% if app.user %}
-                        <li><a href="{{ path('profil_home') }}">Mon profil</a></li>
-                        <li><a href="{{ path('profil_home') }}">Créer une sortie</a></li>
-                        <li><a href="{{ path('profil_home') }}">Sortie</a></li>
+        <div class="l_page">
+            <header class="l_header">
+                <h1><a href="{{ path('main_home') }}">Sortir.com</a></h1>
+                <nav class="header_nav">
+                    <ul class="nav_header">
+                        <li><a href="{{ path('main_home') }}">Accueil</a></li>
+                        {% if app.user %}
+                            <li><a href="{{ path('profil_home') }}">Mon profil</a></li>
+                            <li><a href="{{ path('profil_home') }}">Créer une sortie</a></li>
+                            <li><a href="{{ path('profil_home') }}">Sortie</a></li>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <li><a href="{{ path('admin_home') }}">Admin</a></li>
+                            {% endif %}
 
-                        {% if is_granted("ROLE_ADMIN") %}
-                            <li><a href="{{ path('admin_home') }}">Admin</a></li>
+                            <li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>
+                        {% else %}
+                            <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                            <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
                         {% endif %}
+                    </ul>
+                </nav>
+            </header>
 
-                        <li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>
-                    {% else %}
-                        <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                        <li><a href="{{ path('app_register') }}">S'inscrire</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </header>
-        {% block body %}{% endblock %}
+            <main class="l_main">
+                {% block body %}
+                {% endblock %}
+            </main>
+
+            <footer class="l_footer">
+                2021 - BrainFart Teams :)
+            </footer>
+        </div>
     </body>
 </html>

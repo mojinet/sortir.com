@@ -78,14 +78,14 @@ class AppFixtures extends Fixture
             $sortie[$i]->setdateHeureDebut($faker->dateTimeThisMonth($max = 'now', $timezone = null));
             $sortie[$i]->setDuree($faker->dateTimeThisMonth($max = 'now', $timezone = null));
             $sortie[$i]->setDateLimiteInscription($faker->dateTimeThisMonth($max = 'now', $timezone = null));
-            $sortie[$i]->setNbInscriptionMax($faker->randomDigit);
+            $sortie[$i]->setNbInscriptionMax($faker->numberBetween($min = 5, $max=20 ));
             $sortie[$i]->setInfosSortie($faker->sentence);
 
             $sortie[$i]->setEtat($etat[$faker->numberBetween($min = 0, $max = count($etat) - 1 )]);
             $sortie[$i]->setLieu($lieu[$faker->numberBetween($min = 0, $max = count($lieu) - 1 )]);
             $sortie[$i]->setCampus($campus[$faker->numberBetween($min = 0, $max = count($campus) - 1 )]);
-            $sortie[$i]->setOrganisateur($participant[$faker->numberBetween($min = 5, $max = count($participant) - 1 )]);
-            for($j = 0; $j < $faker->numberBetween($min = 1, 20 ); $j++){
+            $sortie[$i]->setOrganisateur($participant[$faker->numberBetween($min = 0, $max = count($participant) - 1 )]);
+            for($j = 0; $j < $faker->numberBetween($min = 0, $max= $sortie[$i]->getNbInscriptionMax() ); $j++){
                 $sortie[$i]->addParticipant($participant[$faker->numberBetween($min = 0, $max = count($participant) - 1 )]);
             }
 

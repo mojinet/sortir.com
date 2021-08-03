@@ -26,13 +26,23 @@
                     <td>{{ sortie.nom }}</td>
                     <td>{{ sortie.dateHeureDebut|date('d/m/Y') }}</td>
                     <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
-                    <td>?/{{ sortie.nbInscriptionMax }}</td>
+                    <td>{{ sortie.participants|length }}/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
-                    <td> ? </td>
+                    <td>
+                    {% for p in sortie.participants %}
+                        {% if app.user == sortie.participants %}
+                            Oui
+                        {% endif %}
+                    {% endfor %}
+                    </td>
                     <td>{{ sortie.organisateur.pseudo }}</td>
                     <td>
-                        <a href="">Afficher</a>
-                        <a href="">Se desister</a>
+                        <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
+                        {% for p in sortie.participants %}
+                            {% if app.user == sortie.participants %}
+                                <a href="">Se desister</a>
+                            {% endif %}
+                        {% endfor %}
                         <a href="">S'inscrire</a>
                     </td>
                 </tr>
