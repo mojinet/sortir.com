@@ -1,4 +1,53 @@
-.article-miniature{
-    width:10%;
-    border-radius: 100%;
+/*General*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+a, a:hover{
+    color : #26a3b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1>a{
+    color: white;
+}
+
+li{
+    list-style: none;
+}
+
+/*Layout*/
+.l_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+.l_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #48515a;
+    color: white;
+    padding : 10px;
+}
+
+.l_main{
+    flex-grow: 1;
+    margin : 20px;
+}
+
+.l_footer{
+    display: flex;
+    justify-content: center;
+    background-color: #48515a;
+    color: white;
+    padding : 20px;
+}
+
+/*Module*/
+.nav_header{
+    display: flex;
+    gap : 20px;
 }
