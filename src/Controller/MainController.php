@@ -20,8 +20,20 @@ class MainController extends AbstractController
         // recupere la liste de toutes les sorties
         $sorties = $sortieRepository->findAll();
 
+        // determine si l'utilisateur connecter participe au sortie affiché
+        foreach ($sorties as $sortie){
+            // convertie l'arrayCollection en simple array
+            $participantsArray = $sortie->getParticipants()->toArray();
+            $imIn[$sortie->getId()] = false;
+            // recherche si notre user est contenu dans la liste des participants
+            if( in_array($this->getUser(), $participantsArray)){
+                $imIn[$sortie->getId()] = true;
+            }
+        }
+
         return $this->render('main/index.html.twig', [
-            "sorties" => $sorties
+            "sorties" => $sorties,
+            "imIn" =>  $imIn
         ]);
     }
 }

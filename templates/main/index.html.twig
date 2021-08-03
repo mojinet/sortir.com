@@ -28,22 +28,11 @@
                     <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
                     <td>{{ sortie.participants|length }}/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
-                    <td>
-                    {% for p in sortie.participants %}
-                        {% if app.user == sortie.participants %}
-                            Oui
-                        {% endif %}
-                    {% endfor %}
-                    </td>
+                    <td> {{ imIn[sortie.id] == true ? 'Oui' : 'Non' }} </td>
                     <td>{{ sortie.organisateur.pseudo }}</td>
                     <td>
                         <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
-                        {% for p in sortie.participants %}
-                            {% if app.user == sortie.participants %}
-                                <a href="">Se desister</a>
-                            {% endif %}
-                        {% endfor %}
-                        <a href="">S'inscrire</a>
+                        {{ imIn[sortie.id] == true ? '<a href="">Se desister</a>' : '<a href="">S\'inscrire</a>' }}
                     </td>
                 </tr>
         {% else %}
