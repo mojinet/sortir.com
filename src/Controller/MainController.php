@@ -24,4 +24,16 @@ class MainController extends AbstractController
             "sorties" => $sorties
         ]);
     }
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(SortieRepository $sortieRepository): Response
+    {
+        // recupere la liste de toutes les sorties
+        $sorties = $sortieRepository->whatINeed();
+
+        return $this->render('main/test.html.twig', [
+            "sorties" => $sorties
+        ]);
+    }
 }

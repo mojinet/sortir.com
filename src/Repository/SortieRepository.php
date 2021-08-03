@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,6 +19,18 @@ class SortieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sortie::class);
     }
+//
+//    public function whatINeed(){
+//
+//
+//        $entity = $em
+//            ->getRepository('Sortie')
+//            ->createQueryBuilder('s')
+//            ->join('s.participants', 'p')
+//            ->where('p.id = 1')
+//            ->getQuery()
+//            ->getResult();
+//    }
 
     // /**
     //  * @return Sortie[] Returns an array of Sortie objects

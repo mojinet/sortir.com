@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for sortie in sorties %}
+        {{ sortie.nom }}
+        {{ participant.pseudo }}
+    {% endfor %}
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
