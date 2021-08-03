@@ -3,7 +3,42 @@
 {% block title %}Hello MainController!{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur le site sortir.com le meilleur site du monde</h1>
-    <p>ou le deuxieme mais a as grand chose pret</p>
-    <p>ou le troisieme mais  pas sûr</p>
+<h2>Filtrer les sortie</h2>
+    <p>Todo...</p>
+
+<h2>Liste des sorties</h2>
+    <table class="table table-sm">
+    <thead>
+    <tr>
+        <th scope="col">Nom de la sortie</th>
+        <th scope="col">Date de la sortie</th>
+        <th scope="col">Clôture</th>
+        <th scope="col">Inscrits/Places</th>
+        <th scope="col">Etat</th>
+        <th scope="col">Inscrit</th>
+        <th scope="col">Organisateur</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for sortie in sorties %}
+                <tr>
+                    <td>{{ sortie.nom }}</td>
+                    <td>{{ sortie.dateHeureDebut|date('d/m/Y') }}</td>
+                    <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
+                    <td>?/{{ sortie.nbInscriptionMax }}</td>
+                    <td>{{ sortie.etat.libelle }}</td>
+                    <td> ? </td>
+                    <td>?/{{ sortie.organisateur.pseudo }}</td>
+                    <td>
+                        <a href="">Afficher</a>
+                        <a href="">Se desister</a>
+                        <a href="">S'inscrire</a>
+                    </td>
+                </tr>
+        {% else %}
+            <p>Aucune sortie de prévu !</p>
+        {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}
