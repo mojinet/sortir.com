@@ -4,7 +4,10 @@
 
 {% block body %}
 <h2>Filtrer les sortie</h2>
-    <p>Todo...</p>
+    {{ form_start(filterForm) }}
+    {{ form_widget(filterForm) }}
+    <button class="btn btn-primary">Rechercher</button>
+    {{ form_end(filterForm) }}
 
 <h2>Liste des sorties</h2>
     <table class="table table-sm">
@@ -32,7 +35,13 @@
                     <td>{{ sortie.organisateur.pseudo }}</td>
                     <td>
                         <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
-                        {{ imIn[sortie.id] == true ? '<a href="">Se desister</a>' : '<a href="">S\'inscrire</a>' }}
+                        {% if app.user %}
+                            {% if imIn[sortie.id] %}
+                                <a href="{{ path('main_desister', {'id': sortie.id}) }}">Se desister</a>
+                            {% else %}
+                                <a href="{{ path('main_participe', {'id': sortie.id}) }}">S'inscrire</a>
+                            {% endif %}
+                        {% endif %}
                     </td>
                 </tr>
         {% else %}

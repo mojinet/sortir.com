@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\FilterType;
+use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,9 +34,39 @@ class MainController extends AbstractController
             }
         }
 
+        //formulaire pour filtre
+        $filterForm = $this->createForm(FilterType::class);
+
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,
-            "imIn" =>  $imIn
+            "imIn" =>  $imIn,
+            "filterForm" => $filterForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/participer/{id}", name="participe")
+     */
+    public function participer($id, EntityManagerInterface $em, SortieRepository $sortieRepository, ParticipantRepository $participantRepository)
+    {
+        $sortie = $sortieRepository->find($id);
+        $sortie->addParticipant($participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]));
+
+        $em->persist($sortie);
+        $em->flush();
+        return $this->redirectToRoute('main_home');
+    }
+
+    /**
+     * @Route("/desister/{id}", name="desister")
+     */
+    public function desister($id, EntityManagerInterface $em, SortieRepository $sortieRepository, ParticipantRepository $participantRepository)
+    {
+        $sortie = $sortieRepository->find($id);
+        $sortie->removeParticipant($participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]));
+
+        $em->persist($sortie);
+        $em->flush();
+        return $this->redirectToRoute('main_home');
     }
 }
