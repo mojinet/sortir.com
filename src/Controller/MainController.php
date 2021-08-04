@@ -23,7 +23,7 @@ class MainController extends AbstractController
     public function index(SortieRepository $sortieRepository): Response
     {
         // recupere la liste de toutes les sorties
-        $sorties = $sortieRepository->findAll();
+        $sorties = $sortieRepository->listSortie();
 
         // determine si l'utilisateur connecter participe au sortie affiché
         foreach ($sorties as $sortie){
