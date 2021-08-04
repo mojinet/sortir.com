@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 a, a:hover{
-    color : #26a3b3;
+    color : inherit;
     text-decoration: none;
     font-weight: bold;
 }
 
-h1>a{
-    color: white;
-}
-
 li{
     list-style: none;
+}
+
+h2{
+    margin-top : 30px;
 }
 
 /*Layout*/
@@ -28,7 +28,7 @@ li{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #48515a;
+    background-color: #2eb888;
     color: white;
     padding : 10px;
 }
@@ -38,10 +38,14 @@ li{
     margin : 20px;
 }
 
+.l_main a{
+    color : #2eb888 !important;
+}
+
 .l_footer{
     display: flex;
     justify-content: center;
-    background-color: #48515a;
+    background-color: #2eb888;
     color: white;
     padding : 20px;
 }
@@ -52,6 +56,42 @@ li{
     gap : 20px;
 }
 
-.filterForm > labek{
+/* formulaire des filtres */
+.filterForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+
+}
+#filter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 30px;
     width: 100%;
+}
+
+.btn{
+    margin-top : 10px;
+    background-color: #2eb888;
+    border : none;
+    transition-duration: 0.5s;
+    border : 1px solid #2eb888;
+}
+
+.btn:hover{
+    background-color: white;
+    color: #2eb888;
+    transition-duration: 0.5s;
+    border : 1px solid black;
+}
+
+.filterForm form input{
+    width: 100%;
+    font-size: 0.7em;
+}
+.filterForm form label{
+    width: 100%;
+    font-size: 0.7em;
 }

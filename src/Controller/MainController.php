@@ -50,7 +50,12 @@ class MainController extends AbstractController
     public function participer($id, EntityManagerInterface $em, SortieRepository $sortieRepository, ParticipantRepository $participantRepository)
     {
         $sortie = $sortieRepository->find($id);
-        $sortie->addParticipant($participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]));
+
+        // tant qu'il reste des place
+        if ($sortie->getNbInscriptionMax() < count($sortie->getParticipants())){
+            // inscrit le membre à la sortie
+            $sortie->addParticipant($participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]));
+        }
 
         $em->persist($sortie);
         $em->flush();
