@@ -96,6 +96,14 @@ form{
     font-size: 0.7em;
 }
 
+
+/*PROFIL*/
+.article-miniature{
+    width :10%;
+    border-radius : 75%;
+}
+
+
 /*Flash message*/
 .flash{
     padding: 20px;
