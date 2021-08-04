@@ -51,3 +51,7 @@ li{
     display: flex;
     gap : 20px;
 }
+
+.filterForm > labek{
+    width: 100%;
+}
