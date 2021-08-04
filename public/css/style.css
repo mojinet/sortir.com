@@ -51,3 +51,16 @@ li{
     display: flex;
     gap : 20px;
 }
+
+/*Flash message*/
+.flash{
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+.flash-success{
+    background-color: green;
+}
