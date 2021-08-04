@@ -75,9 +75,9 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 30; $i++) {
             $sortie[$i] = new Sortie();
             $sortie[$i]->setNom($faker->sentence($nbWords = 4, $variableNbWords = true));
-            $sortie[$i]->setdateHeureDebut($faker->dateTimeThisMonth($max = 'now', $timezone = null));
-            $sortie[$i]->setDuree($faker->dateTimeThisMonth($max = 'now', $timezone = null));
-            $sortie[$i]->setDateLimiteInscription($faker->dateTimeThisMonth($max = 'now', $timezone = null));
+            $sortie[$i]->setdateHeureDebut($faker->dateTimeInInterval($startDate = '+ 10 days', $interval = '+20 day', $timezone = null));
+            $sortie[$i]->setDuree($faker->numberBetween($min = 1, $max = 8));
+            $sortie[$i]->setDateLimiteInscription($faker->dateTimeInInterval($startDate = 'now', $interval = '+10 day', $timezone = null));
             $sortie[$i]->setNbInscriptionMax($faker->numberBetween($min = 5, $max=20 ));
             $sortie[$i]->setInfosSortie($faker->sentence);
 
