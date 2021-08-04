@@ -52,8 +52,14 @@ li{
     gap : 20px;
 }
 
+.filterForm > labek{
+    width: 100%;
+}
+
+
 /*PROFIL*/
 .article-miniature{
     width :10%;
     border-radius : 75%;
 }
+
