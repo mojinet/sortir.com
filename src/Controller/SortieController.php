@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Campus;
 use App\Entity\Sortie;
 use App\Form\SortieType;
+use App\Repository\CampusRepository;
+use App\Repository\LieuRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,15 +33,35 @@ class SortieController extends AbstractController
 
     /**
      * @Route("/sortie/create", name="sortie_create")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @param CampusRepository $campusRepository
+     * @param $lieuRepository
+     * @return Response
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, CampusRepository $campusRepository, LieuRepository $lieuRepository): Response
     {
         $sortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
+
+
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted()){
+
+
+
+
+
+
+
+
+
+            $lieu =  $lieuRepository->findOneBy([
+                'nom' => $request->request->get('sortie[lieu]')
+            ]);
+            $sortie -> setLieu($lieu);
 
 
             $entityManager->persist($sortie);
