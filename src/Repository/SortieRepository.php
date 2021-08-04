@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,41 @@ class SortieRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Sortie::class);
+    }
+
+    /**
+     * @param $id
+     * @return Sortie
+     */
+    public function detailSortie($id){
+
+        $query = $this
+            ->createQueryBuilder('s')
+            ->select('s', 'p', 'e', 'c', 'l', 'v')
+            ->join('s.participants', 'p')
+            ->join('s.etat', 'e')
+            ->join('s.campus', 'c')
+            ->join('s.lieu', 'l')
+            ->join('l.ville', 'v')
+            ->andWhere('s.id = :id')
+            ->setParameter(':id', $id)
+            ->getQuery()
+            ->getSingleResult();
+
+        return $query;
+    }
+
+    public function listSortie(){
+
+        $query = $this
+            ->createQueryBuilder('s')
+            ->select('s', 'p', 'e')
+            ->join('s.participants', 'p')
+            ->join('s.etat', 'e')
+            ->getQuery()
+            ->getResult();
+
+        return $query;
     }
 
     // /**
