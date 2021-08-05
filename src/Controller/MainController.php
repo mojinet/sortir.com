@@ -20,7 +20,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SortieRepository $sortieRepository): Response
+    public function index(SortieRepository $sortieRepository, Request $request): Response
     {
         // recupere la liste de toutes les sorties
         $sorties = $sortieRepository->listSortie();
@@ -38,6 +38,11 @@ class MainController extends AbstractController
 
         //formulaire pour filtre
         $filterForm = $this->createForm(FilterType::class);
+        $search = $filterForm->handleRequest($request);
+
+        if($filterForm->isSubmitted() &&$filterForm->isValid() ){
+            $sorties = $sortieRepository->search($search->get('mots')->getData());
+        }
 
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,

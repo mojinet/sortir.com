@@ -20,6 +20,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SortieController extends AbstractController
 {
+
+
+
+
     /**
      * @Route("/sortie/details/{id}", name="sortie_details")
      */
