@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h2>Créer une nouvelle sortie</h2>
     {{ form_start(sortieForm) }}
-
     {{ form_widget(sortieForm) }}
-
-    <button type="submit">Enregistrer</button>
-
-    <a href="{{ path('main_home') }}"><button>Annuler</button></a>
-
-
+    <button type="submit" class="btn">Enregistrer</button>
+    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
     {{ form_end(sortieForm) }}
+    <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
+    <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
 {% endblock %}
 
 {% block title %}

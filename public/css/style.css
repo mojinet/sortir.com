@@ -38,8 +38,8 @@ h2{
     margin : 20px;
 }
 
-.l_main a{
-    color : #2eb888 !important;
+.l_main td a{
+    color : #2eb888;
 }
 
 .l_footer{
@@ -82,7 +82,7 @@ form{
 
 .btn:hover{
     background-color: white;
-    color: #2eb888;
+    color: #2eb888 ;
     transition-duration: 0.5s;
     border : 1px solid black;
 }

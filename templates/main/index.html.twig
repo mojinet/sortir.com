@@ -3,9 +3,6 @@
 {% block title %}{{ parent() }} | Accueil{% endblock %}
 
 {% block body %}
-    <h2>A ajouter sur page création de sortie une fois finis</h2>
-    <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
-    <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
     <h2>Filtrer les sortie</h2>
     <div class="filterForm">
         {{ form_start(filterForm) }}
@@ -14,7 +11,7 @@
         {{ form_end(filterForm) }}
     </div>
 <h2>Liste des sorties</h2>
-    <button class="btn"><a href=""></a></button>
+    <button class="btn btn-primary"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
     <table class="table table-sm">
     <thead>
     <tr>
