@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(sortieForm) }}
+
+    {{ form_widget(sortieForm) }}
+
+    <button type="submit">Enregistrer</button>
+
+    <a href="{{ path('main_home') }}"><button>Annuler</button></a>
+
+
+    {{ form_end(sortieForm) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
