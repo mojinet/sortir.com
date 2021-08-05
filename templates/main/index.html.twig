@@ -3,7 +3,10 @@
 {% block title %}{{ parent() }} | Accueil{% endblock %}
 
 {% block body %}
-<h2>Filtrer les sortie</h2>
+    <h2>A ajouter sur page création de sortie une fois finis</h2>
+    <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
+    <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
+    <h2>Filtrer les sortie</h2>
     <div class="filterForm">
         {{ form_start(filterForm) }}
         {{ form_widget(filterForm) }}
