@@ -33,6 +33,15 @@
                 </nav>
             </header>
 
+            {# lecture et affichage des messages flash #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
             <main class="l_main">
                 {% block body %}
                 {% endblock %}
