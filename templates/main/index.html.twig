@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} | Accueil{% endblock %}
 
 {% block body %}
-<h2>Filtrer les sortie</h2>
+    <h2>Filtrer les sortie</h2>
     <div class="filterForm">
         {{ form_start(filterForm) }}
         {{ form_widget(filterForm) }}
@@ -11,6 +11,7 @@
         {{ form_end(filterForm) }}
     </div>
 <h2>Liste des sorties</h2>
+    <button class="btn btn-primary"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
     <table class="table table-sm">
     <thead>
     <tr>
@@ -38,19 +39,18 @@
                         {% if sortie.dateHeureDebut > date('now', '- 30 days') %}
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
                         {% endif %}
+
                         {% if app.user %}
                             {% if imIn[sortie.id] %}
                                 {% if sortie.dateHeureDebut <= date('now') %}
                                     <a href="{{ path('main_desister', {'id': sortie.id}) }}">Se desister</a>
                                 {% endif %}
-
                             {% else %}
                                 {% if sortie.dateLimiteInscription > date('now') %}
                                     <a href="{{ path('main_participe', {'id': sortie.id}) }}">S'inscrire</a>
                                 {% endif %}
                             {% endif %}
                         {% endif %}
-
                     </td>
                 </tr>
         {% else %}
