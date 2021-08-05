@@ -6,7 +6,9 @@ use App\Form\FilterType;
 use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,7 +23,7 @@ class MainController extends AbstractController
     public function index(SortieRepository $sortieRepository): Response
     {
         // recupere la liste de toutes les sorties
-        $sorties = $sortieRepository->findAll();
+        $sorties = $sortieRepository->listSortie();
 
         // determine si l'utilisateur connecter participe au sortie affiché
         foreach ($sorties as $sortie){
@@ -73,5 +75,23 @@ class MainController extends AbstractController
         $em->persist($sortie);
         $em->flush();
         return $this->redirectToRoute('main_home');
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test(Request $request ,SortieRepository $sortieRepository, ParticipantRepository $participantRepository,  PaginatorInterface $paginator)
+    {
+        $sorties = $sortieRepository->findAll();
+
+
+
+        $sorties = $paginator->paginate(
+            $sorties,
+            $request->query->getInt('page', 1),
+            10
+        );
+        return $this->render('main/test.html.twig', ['sorties' => $sorties]);
+
     }
 }

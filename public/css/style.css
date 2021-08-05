@@ -95,3 +95,11 @@ form{
     width: 100%;
     font-size: 0.7em;
 }
+
+
+/*PROFIL*/
+.article-miniature{
+    width :10%;
+    border-radius : 75%;
+}
+
