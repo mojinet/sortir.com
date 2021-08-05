@@ -14,8 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-
 class SortieController extends AbstractController
 {
     /**
@@ -23,11 +21,54 @@ class SortieController extends AbstractController
      */
     public function details(int $id, SortieRepository $sortieRepository): Response
     {
-
-        $sortie = $sortieRepository->detailSortie($id);
+        $sortie = $sortieRepository->find($id);
 
         return $this->render('sortie/details.html.twig', [
+
             "sortie" => $sortie
+
+        ]);
+    }
+
+    /**
+     * @Route("/sortie/ajouter/ville", name="sortie_ajouter_ville")
+     */
+    public function ajouterVille(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $ville = new Ville();
+        $villeForm = $this->createForm(VilleType::class,$ville);
+        $villeForm->handleRequest($request);
+
+        if($villeForm->isSubmitted() && $villeForm->isValid()){
+            $entityManager->persist($ville);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('main_home');
+        }
+
+        return $this->render('sortie/ajouterVille.html.twig',[
+            'villeForm' => $villeForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/sortie/ajouter/lieu", name="sortie_ajouter_lieu")
+     */
+    public function ajouterLieu(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $lieu = new Lieu();
+        $lieuForm = $this->createForm(LieuType::class,$lieu);
+        $lieuForm->handleRequest($request);
+
+        if($lieuForm->isSubmitted()){
+            $entityManager->persist($lieu);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('main_home');
+        }
+
+        return $this->render('sortie/ajouterLieu.html.twig',[
+            'lieuForm' => $lieuForm->createView()
         ]);
     }
 
@@ -44,19 +85,9 @@ class SortieController extends AbstractController
         $sortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
-
-
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted()){
-
-
-
-
-
-
-
-
 
             $lieu =  $lieuRepository->findOneBy([
                 'nom' => $request->request->get('sortie[lieu]')
