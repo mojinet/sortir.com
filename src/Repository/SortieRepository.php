@@ -25,7 +25,6 @@ class SortieRepository extends ServiceEntityRepository
      * @return Sortie
      */
     public function detailSortie($id){
-
         $query = $this
             ->createQueryBuilder('s')
             ->select('s', 'p', 'e', 'c', 'l', 'v')
@@ -38,12 +37,10 @@ class SortieRepository extends ServiceEntityRepository
             ->setParameter(':id', $id)
             ->getQuery()
             ->getSingleResult();
-
         return $query;
     }
 
     public function listSortie(){
-
         $query = $this
             ->createQueryBuilder('s')
             ->select('s', 'p', 'e')
@@ -51,36 +48,8 @@ class SortieRepository extends ServiceEntityRepository
             ->join('s.etat', 'e')
             ->getQuery()
             ->getResult();
-
         return $query;
     }
 
-    // /**
-    //  * @return Sortie[] Returns an array of Sortie objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Sortie
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
