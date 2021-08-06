@@ -105,6 +105,7 @@ class SortieController extends AbstractController
         //associé id utilisateur campus à la sortie
         $sortie->setCampus($user->getCampus());
         $sortie->setOrganisateur($user);
+        $sortie->addParticipant($user);
 
 
 

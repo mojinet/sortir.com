@@ -43,7 +43,7 @@ class SortieRepository extends ServiceEntityRepository
     public function listSortie(){
         $query = $this
             ->createQueryBuilder('s')
-            ->select('s', 'p', 'e')
+            ->select('s','p', 'e')
             ->join('s.participants', 'p')
             ->join('s.etat', 'e')
             ->getQuery()
