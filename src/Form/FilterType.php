@@ -18,14 +18,20 @@ class FilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('campus', EntityType::class,[
-//                'class' => Campus::class,
-//                'choice_label' => 'nom'
-//            ])
+            ->add('campus', EntityType::class,[
+                'class' => Campus::class,
+                'label' => false,
+                'required' => false,
+                'choice_label' => 'nom',
+                'placeholder' => 'Campus'
+            ])
             ->add('mots', SearchType::class,[
-                'label' => 'Recherche par mot clef',
+                'label' => false,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Recherche par mot clef'
+                ]
             ])
 //            ->add('dateHeureDebut', DateType::class, [
 //                'label' => "date debut",
