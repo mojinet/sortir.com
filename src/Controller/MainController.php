@@ -64,7 +64,7 @@ class MainController extends AbstractController
         $sortie = $sortieRepository->find($id);
 
         // tant qu'il reste des place
-        if ($sortie->getNbInscriptionMax() < count($sortie->getParticipants())){
+        if ($sortie->getNbInscriptionMax() > count($sortie->getParticipants())){
             // inscrit le membre à la sortie
             $sortie->addParticipant($participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]));
         }

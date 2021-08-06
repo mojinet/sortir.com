@@ -20,20 +20,18 @@
         <th scope="col">Clôture</th>
         <th scope="col">Inscrits/Places</th>
         <th scope="col">Etat</th>
-        <th scope="col">Inscrit</th>
         <th scope="col">Organisateur</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
         {% for sortie in sorties %}
-                <tr>
-                    <td>{{ sortie.nom }}</td>
+                <tr class="sortieLine">
+                    <td><a href="{{ path('sortie_details', {'id': sortie.id}) }}">{{ sortie.nom }}</a></td>
                     <td>{{ sortie.dateHeureDebut|date('d/m/Y') }}</td>
                     <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
                     <td>{{ sortie.participants|length }}/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
-                    <td> {{ imIn[sortie.id] == true ? 'Oui' : 'Non' }} </td>
                     <td>{{ sortie.organisateur.pseudo }}</td>
                     <td>
                         {% if sortie.dateHeureDebut > date('now', '- 30 days') %}
@@ -42,11 +40,11 @@
 
                         {% if app.user %}
                             {% if imIn[sortie.id] %}
-                                {% if sortie.dateHeureDebut <= date('now') %}
+                                {% if sortie.dateHeureDebut > date('now') %}
                                     <a href="{{ path('main_desister', {'id': sortie.id}) }}">Se desister</a>
                                 {% endif %}
                             {% else %}
-                                {% if sortie.dateLimiteInscription > date('now') %}
+                                {% if sortie.dateLimiteInscription > date('now') and sortie.nbInscriptionMax > sortie.participants|length %}
                                     <a href="{{ path('main_participe', {'id': sortie.id}) }}">S'inscrire</a>
                                 {% endif %}
                             {% endif %}

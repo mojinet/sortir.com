@@ -22,8 +22,6 @@ class SortieController extends AbstractController
 {
 
 
-
-
     /**
      * @Route("/sortie/details/{id}", name="sortie_details")
      */
@@ -34,7 +32,6 @@ class SortieController extends AbstractController
         return $this->render('sortie/details.html.twig', [
 
             "sortie" => $sortie
-
         ]);
     }
 
