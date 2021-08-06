@@ -116,3 +116,7 @@ form{
 .flash-success{
     background-color: green;
 }
+
+.sortieLine:hover{
+    background-color: #e1fde7;
+}

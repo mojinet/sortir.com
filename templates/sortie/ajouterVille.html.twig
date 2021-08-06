@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
-
+{% block meta %}
+    <script src="{{ asset('js/apiVille.js') }}" defer></script> {% endblock %}
 {% block body %}
     <h2>Ajouter une ville</h2>
     {{ form_start(villeForm) }}
