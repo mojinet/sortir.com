@@ -20,7 +20,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SortieRepository $sortieRepository, Request $request): Response
+    public function index(SortieRepository $sortieRepository, Request $request,  PaginatorInterface $paginator): Response
     {
         // recupere la liste de toutes les sorties
         $sorties = $sortieRepository->listSortie();
@@ -44,6 +44,11 @@ class MainController extends AbstractController
             $sorties = $sortieRepository->search($search->get('mots')->getData());
         }
 
+        $sorties = $paginator->paginate(
+            $sorties,
+            $request->query->getInt('page', 1),
+            10
+        );
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,
             "imIn" =>  $imIn,

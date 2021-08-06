@@ -24,7 +24,8 @@ class FilterType extends AbstractType
 //            ])
             ->add('mots', SearchType::class,[
                 'label' => 'Recherche par mot clef',
-                'mapped' => false
+                'mapped' => false,
+                'required' => false
             ])
 //            ->add('dateHeureDebut', DateType::class, [
 //                'label' => "date debut",
