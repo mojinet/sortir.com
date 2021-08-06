@@ -120,3 +120,16 @@ form{
 .sortieLine:hover{
     background-color: #e1fde7;
 }
+
+/* PAGINATION */
+
+.page-link{
+    color: #2eb888;
+}
+.page-link:focus{
+    color: #87e8c8;
+}
+.page-link:hover{
+    color: #3f524e;
+}
+
