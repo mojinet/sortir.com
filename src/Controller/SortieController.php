@@ -82,6 +82,7 @@ class SortieController extends AbstractController
 
     /**
      * @Route("/sortie/create", name="sortie_create")
+     * @Route("/sortie/edit/{id}", name="sortie_edit")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @param CampusRepository $campusRepository
@@ -90,9 +91,12 @@ class SortieController extends AbstractController
      * @param $participantRepository
      * @return Response
      */
-    public function create(Request $request, EntityManagerInterface $entityManager, CampusRepository $campusRepository, LieuRepository $lieuRepository, EtatRepository $etatRepository, ParticipantRepository $participantRepository): Response
+    public function event(Sortie $sortie = null,Request $request, EntityManagerInterface $entityManager, CampusRepository $campusRepository, LieuRepository $lieuRepository, EtatRepository $etatRepository, ParticipantRepository $participantRepository): Response
     {
-        $sortie = new Sortie();
+        if (!$sortie){
+            $sortie = new Sortie();
+
+        }
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
         $etat = $etatRepository->findAll()[0];
@@ -107,12 +111,9 @@ class SortieController extends AbstractController
         $sortie->setOrganisateur($user);
         $sortie->addParticipant($user);
 
-
-
         $sortieForm->handleRequest($request);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
-
 
 
             $entityManager->persist($sortie);
@@ -124,8 +125,30 @@ class SortieController extends AbstractController
 
         //todo traiter le formulaire
 
-        return $this->render('sortie/create.html.twig', [
-            'sortieForm' => $sortieForm->createView()
+        return $this->render('sortie/event.html.twig', [
+            'sortieForm' => $sortieForm->createView(),
+            'editMode' => $sortie->getId() !== null
+
         ]);
     }
+
+
+    /**
+     * @Route("/sortie/remove/{id}", name="sortie_remove")
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function remove(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository): Response
+    {
+
+        $sortie = $sortieRepository->find($id);
+
+
+
+        return $this->render('sortie/remove.html.twig', [
+            'sortie' => $sortie
+        ]);
+    }
+
 }

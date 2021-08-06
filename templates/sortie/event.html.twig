@@ -4,9 +4,18 @@
     <h2>Créer une nouvelle sortie</h2>
     {{ form_start(sortieForm) }}
     {{ form_widget(sortieForm) }}
-    <button type="submit" class="btn">Enregistrer</button>
-    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
+    <button type="submit" class="btn">
+        {% if editMode %}
+        Modifier
+        {% else %}
+        Enregistrer
+        {% endif %}
+    </button>
     {{ form_end(sortieForm) }}
+    {% if editMode %}
+        <a href="{{ path('sortie_remove', {'id': editMode}) }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
+    {% endif %}
+    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
     <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
     <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
 {% endblock %}
