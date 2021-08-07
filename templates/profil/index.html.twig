@@ -4,13 +4,21 @@
 
 {% block body %}
 
-    <h1>Page du profil</h1>
-
     <h1>Mon profil</h1>
-    <p>Pseudo : {{ app.user.pseudo }}</p>
-    <p>{{ app.user.prenom }} {{ app.user.nom }}</p>
-    <p>Mail : {{ app.user.email }}</p>
-    <img src="{{ asset('img/miniature/' ~ app.user.photoProfil) }}" alt="" class="article-miniature">
+    <div class="fullFlex">
+        <div>
+            <p class="miniTitle">Pseudo <span class="miniDescription">{{ app.user.pseudo }}</span></p>
+            <p class="miniTitle">Identitée <span class="miniDescription">{{ app.user.prenom }} {{ app.user.nom }}</span></p>
+            <p class="miniTitle">Mail <span class="miniDescription">{{ app.user.email }}</span></p>
+            <p class="miniTitle">Avatar</p>
+            {% if app.user.photoProfil == null %}
+                Tu n'a pas de photo de profil :(
+            {% else %}
+                <img src="{{ asset('img/miniature/' ~ app.user.photoProfil) }}" alt="" class="article-miniature">
+            {% endif %}
+        </div>
+        <img src="{{ asset('img/icon/Profile data-bro.png') }}" alt="">
+    </div>
 
     <h2>Modification</h2>
     <div class="panelButton">

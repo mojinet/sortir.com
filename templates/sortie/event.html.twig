@@ -15,9 +15,11 @@
     {% if editMode %}
         <a href="{{ path('sortie_remove', {'id': editMode}) }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
     {% endif %}
-    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
-    <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
-    <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
+    <div>
+        <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
+        <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn">Ajouter un lieu</button></a>
+        <a href="{{ path('sortie_ajouter_ville') }}"><button class="btn">Ajouter une ville</button></a>
+    </div>
 {% endblock %}
 
 {% block title %}
