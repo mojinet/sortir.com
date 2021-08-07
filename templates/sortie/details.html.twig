@@ -1,25 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
-        <ul>
-            <p></p>
-            <li>Nom de la sortie : {{ sortie.nom }}</li>
-            <li>Date et heure de la sortie : {{ sortie.dateHeureDebut | date }}</li>
-            <li>Date limite d'inscription : {{ sortie.dateLimiteInscription | date }}</li>
-            <li>Nombre de places : {{ sortie.nbInscriptionMax }}</li>
-            <li>Durée : {{ sortie.duree | date }}</li>
-            <li>Description et infos : {{ sortie.infosSortie }}</li>
-            <li>Campus : {{ sortie.campus.nom }}</li>
-            <li>Lieu : {{ sortie.lieu.nom }}</li>
-            <li>Rue : {{ sortie.lieu.rue }}</li>
-            <li>Ville : {{ sortie.lieu.ville.nom }}</li>
-            <li>Code postal : {{ sortie.lieu.ville.codePostal }}</li>
-            <li>Latitude : {{ sortie.lieu.latitude }}</li>
-            <li>Longitude : {{ sortie.lieu.longitude }}</li>
-        </ul>
+    <div class="fullFlex">
+        <div>
+            <ul>
+                <p></p>
+                <li class="miniTitle">Nom de la sortie <span class="miniDescription">{{ sortie.nom }}</span> </li>
+                <li class="miniTitle">Date et heure de la sortie <span class="miniDescription">{{ sortie.dateHeureDebut | date }}</span></li>
+                <li class="miniTitle">Date limite d'inscription <span class="miniDescription">{{ sortie.dateLimiteInscription | date }}</span></li>
+                <li class="miniTitle">Nombre de places <span class="miniDescription">{{ sortie.nbInscriptionMax }}</span></li>
+                <li class="miniTitle">Durée <span class="miniDescription">{{ sortie.duree }} mn</span></li>
+                <li class="miniTitle">Description et infos <span class="miniDescription">{{ sortie.infosSortie }}</span></li>
+                <li class="miniTitle">Campus <span class="miniDescription">{{ sortie.campus.nom }}</span></li>
+                <li class="miniTitle">Adresse</li>
+                <li class="miniDescription">{{ sortie.lieu.nom }}</li>
+                <li class="miniDescription">{{ sortie.lieu.rue }}</li>
+                <li class="miniDescription">{{ sortie.lieu.ville.codePostal }}{{ sortie.lieu.ville.nom }}</li>
+                <li class="miniTitle">Coordonnées GPS <span class="miniDescription">{{ sortie.lieu.latitude }}/{{ sortie.lieu.longitude }}</span></li>
+            </ul>
+        </div>
+        <img src="{{ asset('img/icon/Campfire-amico.png') }}" alt="">
     </div>
-    {% if sortie.organisateur.id == app.user.id %}
+
+    {% if app.user and sortie.organisateur.id == app.user.id %}
         <a href="{{ path('sortie_remove', {'id': sortie.id}) }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
         <a href="{{ path('sortie_edit', {'id': sortie.id}) }}"><button type="submit" class="btn">Modifier</button></a>
     {% endif %}

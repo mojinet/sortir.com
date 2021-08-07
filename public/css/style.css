@@ -11,8 +11,46 @@ li{
     list-style: none;
 }
 
-h2{
+h2, h1{
     margin-top : 30px;
+    width: 1000px;
+    text-align: start;
+}
+
+form input{
+    width: 100%;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+button{
+    width: 100% !important;
+    color: white !important;
+    background-color: #2eb888;
+}
+
+button:hover{
+    color: #2eb888 !important;
+    background-color: white;
+}
+
+
+form textarea{
+    width: 100%;
+    min-height: 200px;
 }
 
 /*Layout*/
@@ -26,16 +64,37 @@ h2{
 
 .l_header{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background-color: #2eb888;
     color: white;
     padding : 10px;
 }
+@media screen and (max-width:1065px){
+    h2{
+        margin-top : 30px;
+        width: 100%;
+    }
+    table{
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width:538px){
+    .l_header{
+        justify-content: center;
+    }
+}
 
 .l_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
-    margin : 20px;
+    padding : 20px;
 }
 
 .l_main td a{
@@ -60,16 +119,30 @@ h2{
 .filterForm{
     display: flex;
     justify-content: center;
-    align-items: center;
+    width: 100%;
+    max-width: 1000px;
 }
-form{
 
-}
 #filter{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 10px 30px;
-    width: 100%;
+    flex-grow: 1;
+}
+
+#filter button{
+    margin:0;
+}
+
+#filter div{
+    height: 100%;
+}
+
+.mainTable, table{
+    max-width: 1000px;
+    margin-top: 20px;
 }
 
 .btn{
@@ -133,3 +206,32 @@ form{
     color: #3f524e;
 }
 
+.fullFlex{
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fullFlex img{
+    width: 50%;
+    height: 50%;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.miniTitle{
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 5px;
+}
+.miniDescription{
+    font-weight: normal;
+    font-size: 1rem !important;
+}
+
+.pagination{
+    margin: 20px 0;
+}
