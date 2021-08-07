@@ -52,7 +52,7 @@ class SortieRepository extends ServiceEntityRepository
     }
 
 
-    public function search($mots = null , $campus = null, $dateDebut = null, $duree = null){
+    public function search($mots = null , $campus = null, $organisateur = null , $duree = null){
         $query = $this
             ->createQueryBuilder('s');
 //            ->where('s.active = 1');
@@ -64,6 +64,11 @@ class SortieRepository extends ServiceEntityRepository
             $query->leftJoin('s.campus', 'c');
             $query->andWhere('c.id = :id')
                 ->setParameter('id', $campus);
+        }
+        if($organisateur =! null){
+            $query->andWhere('s.organisateur = :organisateur')
+                ->setParameter('s.organisateur', $organisateur);
+            dd($organisateur);
         }
         return $query->getQuery()->getResult();
 
