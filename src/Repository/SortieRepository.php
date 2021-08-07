@@ -52,13 +52,18 @@ class SortieRepository extends ServiceEntityRepository
     }
 
 
-    public function search($mots){
+    public function search($mots = null , $campus = null, $dateDebut = null, $duree = null){
         $query = $this
             ->createQueryBuilder('s');
 //            ->where('s.active = 1');
         if($mots != null){
             $query->where('MATCH_AGAINST(s.nom, s.infosSortie) AGAINST (:mots boolean)>0')
                 ->setParameter('mots', $mots);
+        }
+        if($campus != null){
+            $query->leftJoin('s.campus', 'c');
+            $query->andWhere('c.id = :id')
+                ->setParameter('id', $campus);
         }
         return $query->getQuery()->getResult();
 

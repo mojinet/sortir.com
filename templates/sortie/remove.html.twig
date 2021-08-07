@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        <ul>
+            <li>Nom de la sortie : {{ sortie.nom }}</li>
+            <li>Date et heure de la sortie : {{ sortie.dateHeureDebut | date }}</li>
+            <li>Campus : {{ sortie.campus.nom }}</li>
+            <li>Lieu : {{ sortie.lieu.nom }}</li>
+            <li><textarea id="story" name="motif">Motif :</textarea></li>
+        </ul>
+    </div>
+
+    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
+    <a href="{{ path('main_home') }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
+
+{% endblock %}
+
