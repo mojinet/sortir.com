@@ -13,6 +13,7 @@ li{
 
 h2{
     margin-top : 30px;
+    width: 1000px;
 }
 
 /*Layout*/
@@ -26,16 +27,37 @@ h2{
 
 .l_header{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background-color: #2eb888;
     color: white;
     padding : 10px;
 }
+@media screen and (max-width:1065px){
+    h2{
+        margin-top : 30px;
+        width: 100%;
+    }
+    table{
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width:538px){
+    .l_header{
+        justify-content: center;
+    }
+}
 
 .l_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex-grow: 1;
-    margin : 20px;
+    padding : 20px;
 }
 
 .l_main td a{
@@ -72,6 +94,10 @@ form{
     width: 100%;
 }
 
+.mainTable{
+    max-width: 1000px;
+    margin-top: 20px;
+}
 .btn{
     margin-top : 10px;
     background-color: #2eb888;

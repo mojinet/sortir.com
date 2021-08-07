@@ -11,13 +11,11 @@
         {{ form_end(filterForm) }}
     </div>
 <h2>Liste des sorties</h2>
-    <button class="btn btn-primary"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
-    <table class="table table-sm">
+    <table class="table table-sm mainTable">
     <thead>
     <tr>
         <th scope="col">Nom de la sortie</th>
-        <th scope="col">Date de la sortie</th>
-        <th scope="col">Clôture</th>
+        <th scope="col">Date sortie/cloture</th>
         <th scope="col">Inscrits/Places</th>
         <th scope="col">Etat</th>
         <th scope="col">Organisateur</th>
@@ -28,8 +26,7 @@
         {% for sortie in sorties %}
                 <tr class="sortieLine">
                     <td><a href="{{ path('sortie_details', {'id': sortie.id}) }}">{{ sortie.nom }}</a></td>
-                    <td>{{ sortie.dateHeureDebut|date('d/m/Y') }}</td>
-                    <td>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
+                    <td>{{ sortie.dateHeureDebut|date('d/m/Y') }} <br>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
                     <td>{{ sortie.participants|length }}/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
                     <td>{{ sortie.organisateur.pseudo }}</td>
@@ -56,6 +53,9 @@
         {% endfor %}
     </tbody>
     </table>
+    {% if app.user %}
+        <button class="btn btn-primary"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
+    {% endif %}
     <div class="navigation">
         {{ knp_pagination_render(sorties) }}
     </div>
