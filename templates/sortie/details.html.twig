@@ -19,7 +19,7 @@
             <li>Longitude : {{ sortie.lieu.longitude }}</li>
         </ul>
     </div>
-    {% if sortie.organisateur.id == app.user.id %}
+    {% if app.user and sortie.organisateur.id == app.user.id %}
         <a href="{{ path('sortie_remove', {'id': sortie.id}) }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
         <a href="{{ path('sortie_edit', {'id': sortie.id}) }}"><button type="submit" class="btn">Modifier</button></a>
     {% endif %}
