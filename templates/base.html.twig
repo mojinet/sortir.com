@@ -19,7 +19,7 @@
                     <ul class="nav_header">
                         <li><a href="{{ path('main_home') }}">Accueil</a></li>
                         {% if app.user %}
-                            <li><a href="{{ path('profil_home') }}">Mon profil</a></li>
+                            <li><a href="{{ path('profil_home', {'id': app.user.id}) }}">Mon profil</a></li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li><a href="{{ path('admin') }}">Admin</a></li>
                             {% endif %}

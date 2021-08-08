@@ -21,11 +21,14 @@ class ProfilController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @Route("/{id}", name="home")
      */
-    public function index(): Response
+    public function index($id, ParticipantRepository $participantRepository): Response
     {
+        $user = $participantRepository->find($id);
         return $this->render('profil/index.html.twig', [
             'controller_name' => 'ProfilController',
+            'user' => $user
         ]);
     }
 

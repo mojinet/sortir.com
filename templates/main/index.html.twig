@@ -28,7 +28,7 @@
                     <td class="d-none d-sm-table-cell">{{ sortie.dateHeureDebut|date('d/m/Y') }} <br>{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
                     <td>{{ sortie.participants|length }}/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
-                    <td class="d-none d-lg-table-cell">{{ sortie.organisateur.pseudo }}</td>
+                    <td class="d-none d-lg-table-cell"><a href="{{ path('profil_home', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a></td>
                     <td class="d-none d-sm-table-cell">
                         {% if sortie.dateHeureDebut > date('now', '- 30 days') %}
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
