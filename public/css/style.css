@@ -13,7 +13,7 @@ li{
 
 h2, h1{
     margin-top : 30px;
-    width: 1000px;
+    max-width: 1000px;
     text-align: start;
 }
 
@@ -38,6 +38,7 @@ form input{
 
 button{
     width: 100% !important;
+    max-width: 1000px;
     color: white !important;
     background-color: #2eb888;
 }
@@ -86,6 +87,9 @@ form textarea{
     .l_header{
         justify-content: center;
     }
+    .l_header h1{
+        text-align: center;
+    }
 }
 
 .l_main{
@@ -112,6 +116,8 @@ form textarea{
 /*Module*/
 .nav_header{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap : 20px;
 }
 
