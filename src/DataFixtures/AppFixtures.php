@@ -41,7 +41,7 @@ class AppFixtures extends Fixture
 
 
         // on créer les 4 états
-        $etatArray = ['A venir', 'En cours', 'Terminé', 'Deja passé'];
+        $etatArray = ['A venir', 'En cours', 'Terminé', 'Annuler'];
         $etat = Array();
         for ($i = 0; $i < 4; $i++) {
             $etat[$i] = new Etat();

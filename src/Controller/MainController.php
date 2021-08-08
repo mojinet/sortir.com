@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\FilterType;
+use App\Repository\EtatRepository;
 use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,13 +18,27 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MainController extends AbstractController
 {
+    private int $TERMINER = 2;
+    private int $ANNULER = 3;
+
     /**
      * @Route("/", name="home")
      */
-    public function index(SortieRepository $sortieRepository, Request $request,  PaginatorInterface $paginator): Response
+    public function index(SortieRepository $sortieRepository, Request $request,  PaginatorInterface $paginator, EtatRepository $etatRepository): Response
     {
         // recupere la liste de toutes les sorties
         $sorties = $sortieRepository->listSortie();
+        // recupere la liste des état
+        $etats = $etatRepository->findAll();
+
+        //mets à jours les état si la date est déja passé et que la sortie n'a pas été annuler on la passe en terminer
+        foreach ($sorties as $sortie){
+            if ($sortie->getDateHeureDebut() < new \DateTime()){
+                if($sortie->getEtat() != $etats[$this->ANNULER]){
+                    $sortie->setEtat($etats[$this->TERMINER]);
+                }
+            }
+        }
 
         // determine si l'utilisateur connecter participe au sortie affiché
         foreach ($sorties as $sortie){
@@ -46,8 +61,6 @@ class MainController extends AbstractController
                 $search->get('campus')->getData(),
                 $search->get('organisateur')->getData()
             );
-
-
         }
 
         $sorties = $paginator->paginate(
@@ -100,14 +113,11 @@ class MainController extends AbstractController
     {
         $sorties = $sortieRepository->findAll();
 
-
-
         $sorties = $paginator->paginate(
             $sorties,
             $request->query->getInt('page', 1),
             10
         );
         return $this->render('main/test.html.twig', ['sorties' => $sorties]);
-
     }
 }
