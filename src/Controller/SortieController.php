@@ -88,14 +88,13 @@ class SortieController extends AbstractController
      * @param CampusRepository $campusRepository
      * @param LieuRepository $lieuRepository
      * @param EtatRepository $etatRepository
-     * @param $participantRepository
+     * @param ParticipantRepository $participantRepository
      * @return Response
      */
     public function event(Sortie $sortie = null,Request $request, EntityManagerInterface $entityManager, CampusRepository $campusRepository, LieuRepository $lieuRepository, EtatRepository $etatRepository, ParticipantRepository $participantRepository): Response
     {
         if (!$sortie){
             $sortie = new Sortie();
-
         }
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
@@ -104,7 +103,6 @@ class SortieController extends AbstractController
 
         //récupérer l'utilisateur
         $user = $participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]);
-
 
         //associé id utilisateur campus à la sortie
         $sortie->setCampus($user->getCampus());
@@ -115,15 +113,12 @@ class SortieController extends AbstractController
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()){
 
-
             $entityManager->persist($sortie);
             $entityManager->flush();
 
             $this->addFlash('success', 'La sortie a bien été créer');
             return $this->redirectToRoute('sortie_details', ['id' => $sortie->getId()]);
         }
-
-        //todo traiter le formulaire
 
         return $this->render('sortie/event.html.twig', [
             'sortieForm' => $sortieForm->createView(),
@@ -141,10 +136,7 @@ class SortieController extends AbstractController
      */
     public function remove(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository): Response
     {
-
         $sortie = $sortieRepository->find($id);
-
-
 
         return $this->render('sortie/remove.html.twig', [
             'sortie' => $sortie

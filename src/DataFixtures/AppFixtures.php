@@ -39,11 +39,13 @@ class AppFixtures extends Fixture
             $manager->persist($lieu[$i]);
         }
 
-        // on créer 5 états
+
+        // on créer les 4 états
+        $etatArray = ['A venir', 'En cours', 'Terminé', 'Deja passé'];
         $etat = Array();
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 4; $i++) {
             $etat[$i] = new Etat();
-            $etat[$i]->setLibelle($faker->word);
+            $etat[$i]->setLibelle($etatArray[$i]);
             $manager->persist($etat[$i]);
         }
 
@@ -81,7 +83,7 @@ class AppFixtures extends Fixture
             $sortie[$i]->setNbInscriptionMax($faker->numberBetween($min = 5, $max=20 ));
             $sortie[$i]->setInfosSortie($faker->sentence);
 
-            $sortie[$i]->setEtat($etat[$faker->numberBetween($min = 0, $max = count($etat) - 1 )]);
+            $sortie[$i]->setEtat($etat[0]);
             $sortie[$i]->setLieu($lieu[$faker->numberBetween($min = 0, $max = count($lieu) - 1 )]);
             $sortie[$i]->setCampus($campus[$faker->numberBetween($min = 0, $max = count($campus) - 1 )]);
             $sortie[$i]->setOrganisateur($participant[$faker->numberBetween($min = 0, $max = count($participant) - 1 )]);
