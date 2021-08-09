@@ -53,11 +53,7 @@
     </tbody>
     </table>
     {% if app.user %}
-        <div class="fullFlex">
-            <button class="btn btn-primary d-none d-sm-block"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
-            <button class="btn btn-primary d-none d-sm-block"><a href="{{ path('groupe_main') }}">Gestion de groupe</a></button>
-        </div>
-
+        <button class="btn btn-primary d-none d-sm-block"><a href="{{ path('sortie_create') }}">Ajouter une sortie</a></button>
     {% endif %}
     <div class="navigation">
         {{ knp_pagination_render(sorties) }}
