@@ -9,7 +9,11 @@
                 <li class="miniTitle">Date limite d'inscription <span class="miniDescription">{{ sortie.dateLimiteInscription | date }}</span></li>
                 <li class="miniTitle">Nombre de places <span class="miniDescription">{{ sortie.nbInscriptionMax }}</span></li>
                 <li class="miniTitle">Durée <span class="miniDescription">{{ sortie.duree }} mn</span></li>
+                {% if sortie.etat.libelle is same as ('Annuler') %}
+                <li class="miniTitle">Motif <span class="miniDescription">{{ sortie.infosSortie }}</span></li>
+                {% else %}
                 <li class="miniTitle">Description et infos <span class="miniDescription">{{ sortie.infosSortie }}</span></li>
+                {% endif %}
                 <li class="miniTitle">Campus <span class="miniDescription">{{ sortie.campus.nom }}</span></li>
                 <li class="miniTitle">Adresse</li>
                 <li class="miniDescription">{{ sortie.lieu.nom }}</li>

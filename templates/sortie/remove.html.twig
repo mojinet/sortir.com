@@ -12,7 +12,7 @@
             <li>Date et heure de la sortie : {{ sortie.dateHeureDebut | date }}</li>
             <li>Campus : {{ sortie.campus.nom }}</li>
             <li>Lieu : {{ sortie.lieu.nom }}</li>
-            <li><textarea id="story" name="motif">Motif :</textarea></li>
+            <li>Motif : {{ form_row(modifForm.infosSortie) }}</li>
         </ul>
     </div>
 

@@ -17,12 +17,15 @@ use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SortieController extends AbstractController
 {
+
+    private int $ANNULER = 3;
 
 
     /**
@@ -134,11 +137,30 @@ class SortieController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function remove(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository): Response
+    public function remove(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
         $sortie = $sortieRepository->find($id);
 
+        $etats = $etatRepository->findAll();
+        $sortie->setEtat($etats[$this->ANNULER]);
+
+        $modifForm = $this->createForm(SortieType::class, $sortie);
+
+        $modifForm->handleRequest($request);
+
+        if ($modifForm->isSubmitted() && $modifForm->isValid()) {
+
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('main_home');
+
+        }
+
+
+
         return $this->render('sortie/remove.html.twig', [
+            'modifForm' => $modifForm->createView(),
             'sortie' => $sortie
         ]);
     }
