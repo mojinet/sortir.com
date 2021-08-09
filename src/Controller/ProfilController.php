@@ -20,19 +20,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ProfilController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
-     * @Route("/{id}", name="home")
-     */
-    public function index($id, ParticipantRepository $participantRepository): Response
-    {
-        $user = $participantRepository->find($id);
-        return $this->render('profil/index.html.twig', [
-            'controller_name' => 'ProfilController',
-            'user' => $user
-        ]);
-    }
-
-    /**
      * @Route("/modifier", name="modify")
      */
     public function modify(Request $request): Response
@@ -91,5 +78,18 @@ class ProfilController extends AbstractController
 
         $this->addFlash('success','Votre compte à bien été supprimé');
         return $this->redirectToRoute('main_home');
+    }
+
+    /**
+     * @Route("/", name="home")
+     * @Route("/{id}", name="home")
+     */
+    public function index($id, ParticipantRepository $participantRepository): Response
+    {
+        $user = $participantRepository->find($id);
+        return $this->render('profil/index.html.twig', [
+            'controller_name' => 'ProfilController',
+            'user' => $user
+        ]);
     }
 }

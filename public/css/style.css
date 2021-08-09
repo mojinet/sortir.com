@@ -13,9 +13,9 @@ li{
 
 h2, h1, h3{
     margin-top : 30px;
-    max-width: 1000px;
+
     text-align: start;
-    width: 100%;
+    max-width: 1000px;
     margin-bottom: 20px;
 }
 
@@ -128,6 +128,11 @@ form textarea{
     justify-content: center;
     width: 100%;
     max-width: 1000px;
+}
+
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
 }
 
 #filter{

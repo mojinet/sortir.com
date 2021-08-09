@@ -65,11 +65,11 @@ class SortieRepository extends ServiceEntityRepository
             $query->andWhere('c.id = :id')
                 ->setParameter('id', $campus);
         }
-        if($organisateur =! null){
-            $query->andWhere('s.organisateur = :organisateur')
-                ->setParameter('s.organisateur', $organisateur);
-            dd($organisateur);
-        }
+//        if($organisateur =! null){
+//            $query->andWhere('s.organisateur = :organisateur')
+//                ->setParameter('s.organisateur', $organisateur);
+//
+//        }
         return $query->getQuery()->getResult();
 
 

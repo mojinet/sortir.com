@@ -55,11 +55,11 @@ class MainController extends AbstractController
         $filterForm = $this->createForm(FilterType::class);
         $search = $filterForm->handleRequest($request);
 
-        if($filterForm->isSubmitted() &&$filterForm->isValid() ){
+        if($filterForm->isSubmitted() && $filterForm->isValid() ){
             $sorties = $sortieRepository->search(
                 $search->get('mots')->getData(),
-                $search->get('campus')->getData(),
-                $search->get('organisateur')->getData()
+                $search->get('campus')->getData()
+//                $search->get('organisateur')->getData()
             );
         }
 

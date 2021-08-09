@@ -33,6 +33,11 @@ class FilterType extends AbstractType
                     'placeholder' => 'Recherche par mot clef'
                 ]
             ])
+            ->add('Rechercher', SubmitType::class, [
+                'attr' =>[
+                    'class' => 'btn'
+                ]
+            ])
 //            ->add('dateHeureDebut', DateType::class, [
 //                'label' => "date debut",
 //                'html5'  => true,
@@ -45,28 +50,22 @@ class FilterType extends AbstractType
 //                'required' => false,
 //                'widget' => 'single_text'
 //            ])
-            ->add('organisateur', CheckboxType::class,[
-                'label' => 'Sortie dont je suis l\'organisateur',
-                'required' => false
-            ])
-            ->add('inscrit', CheckboxType::class,[
-                'label' => 'Sortie auxquelles je suis inscrit',
-                'required' => false
-            ])
-            ->add('pasInscrit', CheckboxType::class,[
-                'label' => 'Sortie auxquelles je ne suis pas inscrit',
-                'required' => false
-            ])
-            ->add('dejaPasse', CheckboxType::class,[
-                'label' => 'Sortie passées',
-                'required' => false
-            ])
-            ->add('Rechercher', SubmitType::class, [
-                'attr' =>[
-                    'class' => 'btn'
-                ]
-
-            ])
+//            ->add('organisateur', CheckboxType::class,[
+//                'label' => 'Sortie dont je suis l\'organisateur',
+//                'required' => false
+//            ])
+//            ->add('inscrit', CheckboxType::class,[
+//                'label' => 'Sortie auxquelles je suis inscrit',
+//                'required' => false
+//            ])
+//            ->add('pasInscrit', CheckboxType::class,[
+//                'label' => 'Sortie auxquelles je ne suis pas inscrit',
+//                'required' => false
+//            ])
+//            ->add('dejaPasse', CheckboxType::class,[
+//                'label' => 'Sortie passées',
+//                'required' => false
+//            ])
         ;
     }
 
