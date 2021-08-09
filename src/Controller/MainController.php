@@ -105,19 +105,4 @@ class MainController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('main_home');
     }
-
-    /**
-     * @Route("/test", name="test")
-     */
-    public function test(Request $request ,SortieRepository $sortieRepository, ParticipantRepository $participantRepository,  PaginatorInterface $paginator)
-    {
-        $sorties = $sortieRepository->findAll();
-
-        $sorties = $paginator->paginate(
-            $sorties,
-            $request->query->getInt('page', 1),
-            10
-        );
-        return $this->render('main/test.html.twig', ['sorties' => $sorties]);
-    }
 }

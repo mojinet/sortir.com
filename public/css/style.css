@@ -11,10 +11,12 @@ li{
     list-style: none;
 }
 
-h2, h1{
+h2, h1, h3{
     margin-top : 30px;
     max-width: 1000px;
     text-align: start;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 form input{
@@ -95,7 +97,6 @@ form textarea{
 .l_main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     flex-grow: 1;
     padding : 20px;
@@ -219,6 +220,7 @@ form textarea{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 0 20px;
 }
 
 .fullFlex img{

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('groupe_main') }}"><button class="btn">Retour</button></a>
+    <h2>Groupe : {{ groupe.nom }}</h2>
+    <h3>Liste des membres actuel</h3>
+        <table class="table table-sm mainTable">
+            <thead>
+            <tr>
+                <th scope="col">Pseudo</th>
+                <th scope="row">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for membre in groupe.participants %}
+                <tr>
+                    <td>{{ membre.pseudo }}</td>
+                    <td><a href="{{ path('groupe_supprimer-membre-group', {'idGroupe': groupe.id, 'idMembre': membre.id}) }}"><button class="btn">Supprimer</button></a></td>
+                </tr>
+            {% else %}
+                Aucun membre trouvé
+            {% endfor %}
+            </tbody>
+        </table>
+    <h3>Ajouter un membre</h3>
+    <div class="fullFlex">
+        <table class="table table-sm mainTable">
+            <thead>
+            <tr>
+                <th scope="col">Pseudo</th>
+                <th scope="row">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+    {% for membre in membres %}
+        <tr>
+            <td>{{ membre.pseudo }}</td>
+            <td><a href="{{ path('groupe_ajouter-membre-group', {'idGroupe': groupe.id, 'idMembre': membre.id}) }}"><button class="btn">Ajouter</button></a></td>
+        </tr>
+    {% else %}
+        Aucun membre trouvé
+    {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}
+
+{% block title %}
+{{ parent() }} | Ajouter un membre
+{% endblock %}

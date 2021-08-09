@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Editer un groupe</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">Créer</button>
+    {{ form_end(form) }}
+    <button class="btn"><a href="{{ path('groupe_main') }}">Retour</a></button>
+{% endblock %}
+
+{% block title %}
+{{ parent() }} | Editer groupe
+{% endblock %}
+

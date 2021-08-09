@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Groupe{% endblock %}
+
+{% block body %}
+    <h1>Mes groupes</h1>
+    <div class="fullFlex">
+        <table class="table table-sm mainTable">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="row">Membres</th>
+                <th scope="row">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% for groupe in groupes %}
+            <tr>
+                <td>{{ groupe.nom }}</td>
+                <td>
+                    {% for membre in groupe.participants %}
+                        {{ membre.pseudo }} <br>
+                    {% else %}
+                        Aucun membre
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('groupe_ajouter-membre', {'id': groupe.id}) }}"><button class="btn">Gestion des membres</button></a>
+                    <a href="{{ path('groupe_suprimer-group', {'idGroupe': groupe.id}) }}"><button class="btn">Supprimer groupe</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <button class="btn"><a href="{{ path('groupe_ajouter-groupe') }}">Créer un groupe</a></button>
+{% endblock %}

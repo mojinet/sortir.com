@@ -102,9 +102,20 @@ class Participant implements UserInterface
      */
     private $photoProfil;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Groupe::class, mappedBy="organisateur")
+     */
+    private $groupe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Groupe::class, mappedBy="participants")
+     */
+    private $groupes;
+
     public function __construct()
     {
         $this->sorties = new ArrayCollection();
+        $this->groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -298,6 +309,50 @@ class Participant implements UserInterface
     public function setPhotoProfil(?string $photoProfil): self
     {
         $this->photoProfil = $photoProfil;
+
+        return $this;
+    }
+
+    public function getGroupe(): ?Groupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(Groupe $groupe): self
+    {
+        // set the owning side of the relation if necessary
+        if ($groupe->getOrganisateur() !== $this) {
+            $groupe->setOrganisateur($this);
+        }
+
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Groupe[]
+     */
+    public function getGroupes(): Collection
+    {
+        return $this->groupes;
+    }
+
+    public function addGroupe(Groupe $groupe): self
+    {
+        if (!$this->groupes->contains($groupe)) {
+            $this->groupes[] = $groupe;
+            $groupe->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupe(Groupe $groupe): self
+    {
+        if ($this->groupes->removeElement($groupe)) {
+            $groupe->removeParticipant($this);
+        }
 
         return $this;
     }
