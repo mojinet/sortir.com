@@ -88,7 +88,7 @@ class Participant implements UserInterface
     private $sorties;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="particpants")
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="particpants", cascade={"persist"})
      */
     private $campus;
 

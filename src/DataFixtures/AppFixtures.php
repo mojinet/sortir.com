@@ -39,7 +39,6 @@ class AppFixtures extends Fixture
             $manager->persist($lieu[$i]);
         }
 
-
         // on créer les 4 états
         $etatArray = ['A venir', 'En cours', 'Terminé', 'Annuler'];
         $etat = Array();
@@ -47,6 +46,16 @@ class AppFixtures extends Fixture
             $etat[$i] = new Etat();
             $etat[$i]->setLibelle($etatArray[$i]);
             $manager->persist($etat[$i]);
+        }
+
+        // on créer 10 campus dont le premier est par defaut
+        $campus = Array();
+        $campus[0] = new Campus();
+        $campus[0]->setNom('Non attribué');
+        for ($i = 1; $i < 10; $i++) {
+            $campus[$i] = new Campus();
+            $campus[$i]->setNom($faker->company);
+            $manager->persist($campus[$i]);
         }
 
         // on créer 150 participants
@@ -60,16 +69,8 @@ class AppFixtures extends Fixture
             $participant[$i]->setPassword($faker->password);
             $participant[$i]->setIsActif(true);
             $participant[$i]->setPseudo($faker->userName);
-
+            $participant[$i]->setCampus($campus[0]);
             $manager->persist($participant[$i]);
-        }
-
-        // on créer 10 campus
-        $campus = Array();
-        for ($i = 0; $i < 10; $i++) {
-            $campus[$i] = new Campus();
-            $campus[$i]->setNom($faker->company);
-            $manager->persist($campus[$i]);
         }
 
         // on créer 30 sorties

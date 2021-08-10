@@ -26,7 +26,7 @@
     </div>
 
     {% if app.user and sortie.organisateur.id == app.user.id %}
-        <a href="{{ path('sortie_remove', {'id': sortie.id}) }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
+        <a href="{{ path('sortie_canceled', {'id': sortie.id}) }}"><button type="submit" class="btn">Annuler la sortie</button></a>
         <a href="{{ path('sortie_edit', {'id': sortie.id}) }}"><button type="submit" class="btn">Modifier</button></a>
     {% endif %}
 

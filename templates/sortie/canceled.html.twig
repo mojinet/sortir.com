@@ -5,19 +5,18 @@
 {% endblock %}
 
 {% block body %}
-
     <div>
         <ul>
             <li>Nom de la sortie : {{ sortie.nom }}</li>
             <li>Date et heure de la sortie : {{ sortie.dateHeureDebut | date }}</li>
             <li>Campus : {{ sortie.campus.nom }}</li>
             <li>Lieu : {{ sortie.lieu.nom }}</li>
+            {{ form_start(modifForm) }}
             <li>Motif : {{ form_row(modifForm.infosSortie) }}</li>
+            <button type="submit" class="btn">Annuler la sortie</button>
+            {{ form_end(modifForm) }}
         </ul>
     </div>
-
-    <a href="{{ path('main_home') }}"><button class="btn">Annuler</button></a>
-    <a href="{{ path('main_home') }}"><button type="submit" class="btn">Supprimer la sortie</button></a>
-
+    <a href="{{ path('main_home') }}"><button class="btn">retour</button></a>
 {% endblock %}
 

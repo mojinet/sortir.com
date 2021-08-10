@@ -7,6 +7,7 @@ use App\Entity\Etat;
 use App\Entity\Lieu;
 use App\Entity\Sortie;
 use App\Entity\Ville;
+use App\Form\AnnulerSortieType;
 use App\Form\LieuType;
 use App\Form\SortieType;
 use App\Form\VilleType;
@@ -132,34 +133,30 @@ class SortieController extends AbstractController
 
 
     /**
-     * @Route("/sortie/remove/{id}", name="sortie_remove")
+     * @Route("/sortie/annuler/{id}", name="sortie_canceled")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function remove(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
+    public function canceled(int $id, Request $request, EntityManagerInterface $entityManager, SortieRepository $sortieRepository, EtatRepository $etatRepository): Response
     {
+        // on recupere la sortie et on set l'etat sur annuler
         $sortie = $sortieRepository->find($id);
-
         $etats = $etatRepository->findAll();
         $sortie->setEtat($etats[$this->ANNULER]);
+        $modifForm = $this->createForm(AnnulerSortieType::class, $sortie);
 
-        $modifForm = $this->createForm(SortieType::class, $sortie);
-
+        // on recupere le formulaire et on enregistre les données puis redirige sur la page accueil
         $modifForm->handleRequest($request);
-
-        if ($modifForm->isSubmitted() && $modifForm->isValid()) {
-
+        if ($modifForm->isSubmitted()) {
             $entityManager->persist($sortie);
             $entityManager->flush();
 
             return $this->redirectToRoute('main_home');
-
         }
 
-
-
-        return $this->render('sortie/remove.html.twig', [
+        // si le formulaire n'est pas remplis on affiche le formulaire
+        return $this->render('sortie/canceled.html.twig', [
             'modifForm' => $modifForm->createView(),
             'sortie' => $sortie
         ]);
