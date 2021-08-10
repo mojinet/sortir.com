@@ -2,6 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
+/*colors
+    First color green
+color : #2eb888;
+background-color: #2eb888;
+
+    complementary red
+color : #B82E5E;
+background-color : #B82E5E;
+
+*/
 
 /*GENERAL*/
 a, a:hover{
@@ -46,7 +56,7 @@ input:focus{
 
 /*LOGIN*/
 .container-logo-login{
-    border-right: 1px solid #48D1A1;
+    border-left: 1px solid #48D1A1;
 }
 .logo-login{
     width: 80%;
@@ -66,6 +76,15 @@ input:focus{
 .login-form{
     width : 60%;
     margin: 7rem auto;
+}
+
+/* REGISTRATION */
+.register-form{
+    width : 65%;
+    margin: 2rem auto;
+}
+.container-logo-register{
+    border-right: 1px solid #48D1A1;
 }
 
 

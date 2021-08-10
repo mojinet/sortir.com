@@ -7,15 +7,17 @@
     <h1>{% if app.user == user %} Mon profil {% else %} Profil {% endif %}</h1>
     <div class="fullFlex">
         <div>
-            <p class="miniTitle">Pseudo <span class="miniDescription">{{ user.pseudo }}</span></p>
-            <p class="miniTitle">Identitée <span class="miniDescription">{{ user.prenom }} {{ user.nom }}</span></p>
-            <p class="miniTitle">Mail <span class="miniDescription">{{ user.email }}</span></p>
             <p class="miniTitle">Avatar</p>
             {% if user.photoProfil == null %}
                 Aucune photo de profil :(
             {% else %}
-                <img src="{{ asset('img/miniature/' ~ user.photoProfil) }}" alt="" class="article-miniature">
+                <img src="{{ asset('img/miniature/' ~ user.photoProfil) }}" alt="" class="article-miniature mb-5">
             {% endif %}
+            <p class="miniTitle">Pseudo <span class="miniDescription">{{ user.pseudo }}</span></p>
+            <p class="miniTitle">Identitée <span class="miniDescription">{{ user.prenom }} {{ user.nom }}</span></p>
+            <p class="miniTitle">Mail <span class="miniDescription">{{ user.email }}</span></p>
+
+
         </div>
         <img src="{{ asset('img/icon/Profile data-bro.png') }}" alt="">
     </div>

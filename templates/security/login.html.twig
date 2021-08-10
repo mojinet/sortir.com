@@ -9,22 +9,16 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            Vous etes enregistré en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+
 
 
     <div class="login-block">
-        <div class="container-logo-login">
-            <img class="logo-login"
-                 data-aos="flip-left"
-                 data-aos-easing="ease-out-cubic"
-                 data-aos-duration="2000"
-                 src="{{ asset('img/icon/pana.png') }}" alt="">
-        </div>
         <div class="login-form">
+            {% if app.user %}
+                <div class="mb-3 mx-auto text-center">
+                    Vous etes enregistré en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
             <label for="inputEmail">Email/Pseudo :</label>
             <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 
@@ -39,11 +33,18 @@
                 </label>
             </div>
 
-            <p><a href="#">Mot de passe oublié ?</a></p>
+            <p><a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a></p>
 
             <button class="btn btn-lg btn-primary" type="submit">
                 S'enregistrer
             </button>
+        </div>
+        <div class="container-logo-login">
+            <img class="logo-login"
+                 data-aos="flip-right"
+                 data-aos-easing="ease-out-cubic"
+                 data-aos-duration="2000"
+                 src="{{ asset('img/icon/pana.png') }}" alt="">
         </div>
     </div>
 

@@ -26,8 +26,8 @@
         {% for sortie in sorties %}
                 <tr class="sortieLine">
                     <td><a href="{{ path('sortie_details', {'id': sortie.id}) }}">{{ sortie.nom }}</a></td>
-                    <td class="d-none d-sm-table-cell">{{ sortie.dateHeureDebut|date('F jS \\a\\t g:ia', 'Europe/Paris')  }}</td>
-                    <td class="d-none d-sm-table-cell">{{ sortie.dateLimiteInscription|date('d/m/Y') }}</td>
+                    <td class="d-none d-sm-table-cell">{{ sortie.dateHeureDebut|date('d M Y', 'Europe/Paris') }}</td>
+                    <td class="d-none d-sm-table-cell">{{ sortie.dateLimiteInscription|date('d M Y', 'Europe/Paris') }}</td>
                     <td ><span class="participants-length"  onclick="sortParticipants();">{{ sortie.participants|length }}</span>/{{ sortie.nbInscriptionMax }}</td>
                     <td>{{ sortie.etat.libelle }}</td>
                     <td class="d-none d-lg-table-cell"><a href="{{ path('profil_home', {'id': sortie.organisateur.id}) }}">{{ sortie.organisateur.pseudo }}</a></td>

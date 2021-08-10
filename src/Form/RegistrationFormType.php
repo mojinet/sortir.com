@@ -20,31 +20,52 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
+            ->add('email', null, [
+                'label' => 'Email',
+                'required' => true,
+                'attr' =>[
+                    'class' => 'form-control']
+            ])
             ->add('pseudo', null,[
                 'label' => 'Pseudo',
-                'required' => true
+                'required' => true,
+                'attr' =>[
+                    'class' => 'form-control']
             ])
             ->add('nom', null,[
                 'label' => 'Nom',
-                'required' => true
+                'required' => true,
+                'attr' =>[
+                    'class' => 'form-control']
             ])
             ->add('prenom', null,[
                 'label' => 'Prénom',
-                'required' => true
+                'required' => true,
+                'attr' =>[
+                    'class' => 'form-control']
             ])
             ->add('telephone', null,[
                 'label' => 'Telephone',
-                'required' => true
+                'required' => true,
+                'attr' =>[
+                    'class' => 'form-control']
             ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'first_options'  => ['label' => 'Mot de passe',
+                    'attr' =>[
+                        'class' => 'form-control']],
+                'second_options' => ['label' => 'Confirmer le mot de passe',
+                    'attr' =>[
+                        'class' => 'form-control']],
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'class' => 'form-control',
+                    'autocomplete' => 'new-password',
+                ],
+
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer un mot de passe',
@@ -67,6 +88,9 @@ class RegistrationFormType extends AbstractType
                 // every time you edit the Product details
                 'required' => false,
 
+
+                'attr' =>[
+                    'class' => 'form-control'],
                 // unmapped fields can't define their validation using annotations
                 // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
