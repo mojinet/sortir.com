@@ -20,39 +20,32 @@ class FilterType extends AbstractType
         $builder
             ->add('campus', EntityType::class,[
                 'class' => Campus::class,
-                'label' => false,
+                'label' => 'Campus',
                 'required' => false,
                 'choice_label' => 'nom',
                 'placeholder' => 'Campus'
             ])
             ->add('mots', SearchType::class,[
-                'label' => false,
+                'label' => 'Recherche par mots clef',
                 'mapped' => false,
-                'required' => false,
-                'attr' => [
-                    'placeholder' => 'Recherche par mot clef'
-                ]
+                'required' => false
             ])
 
             ->add('dateHeureDebut', DateType::class, [
-                'label' => "date de début",
+                'label' => "Date de début",
                 'html5'  => true,
                 'required' => false,
                 'mapped' => false,
                 'widget' => 'single_text'
             ])
             ->add('dateLimiteInscription', DateType::class, [
-                'label' => "date de fin",
+                'label' => "Date de fin",
                 'html5'  => true,
                 'required' => false,
                 'mapped' => false,
                 'widget' => 'single_text'
             ])
-            ->add('Rechercher', SubmitType::class, [
-                'attr' =>[
-                    'class' => 'btn'
-                ]
-            ])
+
             ->add('organisateur', CheckboxType::class,[
                 'label' => 'Sortie dont je suis l\'organisateur',
                 'required' => false,
@@ -72,6 +65,11 @@ class FilterType extends AbstractType
                 'label' => 'Sortie passées',
                 'required' => false,
                 'mapped' => false
+            ])
+            ->add('Rechercher', SubmitType::class, [
+                'attr' =>[
+                    'class' => 'btn'
+                ]
             ])
 
         ;

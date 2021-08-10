@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} | Connexion{% endblock %}
 
 {% block body %}
+    <h1 class="h3 mb-5 mt-3 font-weight-normal title-login">S'enregistrer :</h1>
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -10,34 +11,43 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            Vous etes enregistré en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-5 mt-3 font-weight-normal">Merci de vous enregistrer</h1>
-    <label for="inputEmail">Email/Pseudo :</label>
-    <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de passe :</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-{#    #}
-{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
-{#        See https://symfony.com/doc/current/security/remember_me.html#}
-
-        <div class="checkbox mb-3 mt-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Se souvenir de moi
-            </label>
+    <div class="login-block">
+        <div class="container-logo-login">
+            <img class="logo-login"
+                 data-aos="flip-left"
+                 data-aos-easing="ease-out-cubic"
+                 data-aos-duration="2000"
+                 src="{{ asset('img/icon/pana.png') }}" alt="">
         </div>
-    <p><a href="#">Mot de passe oublié ?</a> </p>
+        <div class="login-form">
+            <label for="inputEmail">Email/Pseudo :</label>
+            <input type="text" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+
+            <label for="inputPassword">Mot de passe :</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <div class="checkbox mb-3 mt-3">
+                <label>
+                    <input class="checkbox" type="checkbox" name="_remember_me"> Se souvenir de moi
+                </label>
+            </div>
+
+            <p><a href="#">Mot de passe oublié ?</a></p>
+
+            <button class="btn btn-lg btn-primary" type="submit">
+                S'enregistrer
+            </button>
+        </div>
+    </div>
 
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        S'enregistrer
-    </button>
+
 </form>
 {% endblock %}
