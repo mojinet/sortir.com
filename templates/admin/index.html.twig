@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Ajouter des membres par fichier CSV{% endblock %}
+
+{% block body %}
+    <h2>Ajout de membres via fichier .csv</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">Ok</button>
+    {{ form_end(form) }}
+{% endblock %}
