@@ -43,6 +43,14 @@ button:hover{
     color: #2eb888 !important;
     background-color: white;
 }
+hr{
+    width: 60%;
+    margin: 2rem auto;
+}
+.tabulation {
+    display: inline-block;
+    margin-left: 40px;
+}
 
 
 form textarea{
@@ -216,8 +224,8 @@ input[type=checkbox]{
 
 /*PROFIL*/
 .article-miniature{
-    width :10%;
-    border-radius : 50%;
+    width :25rem;
+    border-radius : 15rem;
 }
 
 
