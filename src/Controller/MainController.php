@@ -45,12 +45,17 @@ class MainController extends AbstractController
         $search = $filterForm->handleRequest($request);
 
         if($filterForm->isSubmitted() && $filterForm->isValid() ){
-
             $sorties = $sortieRepository->search(
                 $search->get('mots')->getData(),
                 $search->get('campus')->getData(),
-               $search->get('organisateur')?true:($participantRepository->findOneBy(['pseudo'=>$this->get('pseudo')]))
-               );
+                $search->get('organisateur')->getData(),
+                $id = $participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]),
+                $search->get('inscrit')->getData(),
+                $search->get('pasInscrit')->getData(),
+                $search->get('dejaPasse')->getData(),
+                $search->get('dateHeureDebut')->getData(),
+                $search->get('dateLimiteInscription')->getData()
+            );
         }
 
         $sorties = $paginator->paginate(
