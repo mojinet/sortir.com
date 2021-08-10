@@ -8,7 +8,7 @@
     <div class="fullFlex">
         <div>
             <p class="miniTitle">Pseudo <span class="miniDescription">{{ user.pseudo }}</span></p>
-            <p class="miniTitle">Identitée <span class="miniDescription">{{ user.prenom }} {{ app.user.nom }}</span></p>
+            <p class="miniTitle">Identitée <span class="miniDescription">{{ user.prenom }} {{ user.nom }}</span></p>
             <p class="miniTitle">Mail <span class="miniDescription">{{ user.email }}</span></p>
             <p class="miniTitle">Avatar</p>
             {% if user.photoProfil == null %}
