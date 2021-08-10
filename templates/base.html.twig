@@ -23,6 +23,7 @@
                             <li><a href="{{ path('profil_home', {'id': app.user.id}) }}">Mon profil</a></li>
                             {% if is_granted("ROLE_ADMIN") %}
                                 <li><a href="{{ path('admin') }}">Admin</a></li>
+                                <li><a href="{{ path('admin_main') }}">CSV</a></li>
                             {% endif %}
                             <li><a href="{{ path('app_logout') }}">Se deconnecter</a></li>
                         {% else %}
