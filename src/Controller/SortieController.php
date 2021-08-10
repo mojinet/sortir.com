@@ -120,14 +120,14 @@ class SortieController extends AbstractController
             $entityManager->persist($sortie);
             $entityManager->flush();
 
-            $this->addFlash('success', 'La sortie a bien été créer');
+            $this->addFlash('success', 'La sortie a bien été ajoutée');
             return $this->redirectToRoute('sortie_details', ['id' => $sortie->getId()]);
         }
 
         return $this->render('sortie/event.html.twig', [
             'sortieForm' => $sortieForm->createView(),
-            'editMode' => $sortie->getId() !== null
-
+            'editMode' => $sortie->getId() !== null,
+            'sortie' => $sortie
         ]);
     }
 

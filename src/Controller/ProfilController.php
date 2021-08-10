@@ -22,19 +22,22 @@ class ProfilController extends AbstractController
     /**
      * @Route("/modifier", name="modify")
      */
-    public function modify(Request $request): Response
+    public function modify(Request $request, ParticipantRepository $participantRepository): Response
     {
         $user = $this->getUser();
+
         $form = $this->createForm(EditProfileType::class, $user);
         $form->handleRequest($request);
+
+        $user = $participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('message', 'Profil mis a jour');
-            return $this->redirectToRoute('profil_home');
+            $this->addFlash('success', 'Profil mis à jour');
+            return $this->redirectToRoute('profil_home', ['id' => $user->getId()]);
         }
         return $this->render('profil/modify.html.twig',[
             "form" => $form->createView(),
