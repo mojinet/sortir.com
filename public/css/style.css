@@ -39,7 +39,7 @@ h2, h1, h3{
 /*}*/
 
 button{
-    width: 100% !important;
+    width: 100%;
     max-width: 1000px;
     color: white !important;
     background-color: #2eb888;
@@ -53,7 +53,7 @@ button:hover{
 
 form textarea{
     width: 100%;
-    min-height: 200px;
+    min-height: 150px;
 }
 
 /*Layout*/
@@ -160,7 +160,7 @@ input[type=checkbox]{
 .btn{
     margin-top : 10px;
     background-color: #2eb888;
-    border : none;
+
     transition-duration: 0.5s;
     border : 1px solid #2eb888;
 }
@@ -251,3 +251,69 @@ input[type=checkbox]{
 .pagination{
     margin: 20px 0;
 }
+
+/* Page creation profil */
+
+.l_main form label{
+    display: block;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.l_main input, textarea, select{
+    box-sizing: border-box;
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #2eb888;
+    margin: 5px 0px;
+    padding-left: 5px;
+}
+
+#ville_btn{
+
+    background-color: #2eb888;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    transition-duration: 0.5s;
+    border : 1px solid #2eb888;
+    top: -281px;
+    right: 54px;
+    position: relative;
+    text-align: center;
+    padding: 6px;
+}
+
+#lieu_btn{
+    background-color: #2eb888;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    transition-duration: 0.5s;
+    border : 1px solid #2eb888;
+    top: -321px;
+    right: -355px;
+    position: relative;
+    text-align: center;
+    padding: 3px 0px;
+
+}
+.sisi form {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-column-gap: 10rem;
+}
+
+.sisi form button{
+    position: relative;
+    left : calc(50% + 80px);
+}
+
+.size_btn{
+    width: 16rem;
+    margin: 1rem auto;
+    display: block;
+}
+
+
