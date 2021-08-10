@@ -33,23 +33,26 @@ class FilterType extends AbstractType
                     'placeholder' => 'Recherche par mot clef'
                 ]
             ])
+
+            ->add('dateHeureDebut', DateType::class, [
+                'label' => "date de début",
+                'html5'  => true,
+                'required' => false,
+                'mapped' => false,
+                'widget' => 'single_text'
+            ])
+            ->add('dateLimiteInscription', DateType::class, [
+                'label' => "date de fin",
+                'html5'  => true,
+                'required' => false,
+                'mapped' => false,
+                'widget' => 'single_text'
+            ])
             ->add('Rechercher', SubmitType::class, [
                 'attr' =>[
                     'class' => 'btn'
                 ]
             ])
-//            ->add('dateHeureDebut', DateType::class, [
-//                'label' => "date debut",
-//                'html5'  => true,
-//                'required' => false,
-//                'widget' => 'single_text'
-//            ])
-//            ->add('duree', DateType::class, [
-//                'label' => "date fin",
-//                'html5'  => true,
-//                'required' => false,
-//                'widget' => 'single_text'
-//            ])
             ->add('organisateur', CheckboxType::class,[
                 'label' => 'Sortie dont je suis l\'organisateur',
                 'required' => false,
@@ -70,6 +73,7 @@ class FilterType extends AbstractType
                 'required' => false,
                 'mapped' => false
             ])
+
         ;
     }
 
