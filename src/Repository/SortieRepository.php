@@ -44,15 +44,16 @@ class SortieRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('s')
             ->select('s','p', 'e')
-            ->join('s.participants', 'p')
-            ->join('s.etat', 'e')
+            ->leftJoin('s.participants', 'p')
+            ->leftJoin('s.etat', 'e')
             ->getQuery()
             ->getResult();
         return $query;
     }
 
 
-    public function search($mots = null , $campus = null, $organisateur = null , $duree = null){
+    public function search($mots = null , $campus = null, $organisateur = false){
+
         $query = $this
             ->createQueryBuilder('s');
 //            ->where('s.active = 1');
@@ -60,16 +61,16 @@ class SortieRepository extends ServiceEntityRepository
             $query->where('MATCH_AGAINST(s.nom, s.infosSortie) AGAINST (:mots boolean)>0')
                 ->setParameter('mots', $mots);
         }
+
         if($campus != null){
             $query->leftJoin('s.campus', 'c');
             $query->andWhere('c.id = :id')
                 ->setParameter('id', $campus);
         }
-//        if($organisateur =! null){
-//            $query->andWhere('s.organisateur = :organisateur')
-//                ->setParameter('s.organisateur', $organisateur);
-//
-//        }
+        if($organisateur){
+            $query->andWhere('s.organisateur = :organisateur')
+                ->setParameter('organisateur', $organisateur);
+        }
         return $query->getQuery()->getResult();
 
 

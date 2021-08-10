@@ -24,7 +24,7 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SortieRepository $sortieRepository, Request $request,  PaginatorInterface $paginator, EtatRepository $etatRepository): Response
+    public function index(SortieRepository $sortieRepository, Request $request,  PaginatorInterface $paginator, EtatRepository $etatRepository, ParticipantRepository $participantRepository): Response
     {
         // recupere la liste de toutes les sorties
         $sorties = $sortieRepository->listSortie();
@@ -40,6 +40,26 @@ class MainController extends AbstractController
             }
         }
 
+        //formulaire pour filtre
+        $filterForm = $this->createForm(FilterType::class);
+        $search = $filterForm->handleRequest($request);
+
+        if($filterForm->isSubmitted() && $filterForm->isValid() ){
+
+            $sorties = $sortieRepository->search(
+                $search->get('mots')->getData(),
+                $search->get('campus')->getData(),
+               $search->get('organisateur')?true:($participantRepository->findOneBy(['pseudo'=>$this->get('pseudo')]))
+               );
+        }
+
+        $sorties = $paginator->paginate(
+            $sorties,
+            $request->query->getInt('page', 1),
+            10
+
+        );
+        $imIn[$sortie->getId()] = false;
         // determine si l'utilisateur connecter participe au sortie affiché
         foreach ($sorties as $sortie){
             // convertie l'arrayCollection en simple array
@@ -51,23 +71,6 @@ class MainController extends AbstractController
             }
         }
 
-        //formulaire pour filtre
-        $filterForm = $this->createForm(FilterType::class);
-        $search = $filterForm->handleRequest($request);
-
-        if($filterForm->isSubmitted() && $filterForm->isValid() ){
-            $sorties = $sortieRepository->search(
-                $search->get('mots')->getData(),
-                $search->get('campus')->getData()
-//                $search->get('organisateur')->getData()
-            );
-        }
-
-        $sorties = $paginator->paginate(
-            $sorties,
-            $request->query->getInt('page', 1),
-            10
-        );
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,
             "imIn" =>  $imIn,
