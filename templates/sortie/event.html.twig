@@ -8,25 +8,18 @@
     {% endif %}
     <div class="sortie_form">
         {{ form_start(sortieForm) }}
-
-
         {{ form_row(sortieForm.nom) }}
         {{ form_row(sortieForm.dateHeureDebut) }}
         {{ form_row(sortieForm.dateLimiteInscription) }}
         {{ form_row(sortieForm.nbInscriptionMax) }}
         {{ form_row(sortieForm.duree) }}
         {{ form_row(sortieForm.infosSortie) }}
-
         {{ form_row(sortieForm.ville) }}
         {{ form_row(sortieForm.lieu) }}
-        {{ form_row(sortieForm.latitude) }}
-        {{ form_row(sortieForm.longitude) }}
-
         <button type="submit" class="btn">Enregistrer</button>
-
         {{ form_end(sortieForm) }}
-        <a href="{{ path('main_home') }}"><button class="btn size_btn">Annuler</button></a>
 
+        <a href="{{ path('main_home') }}"><button class="btn size_btn">Annuler</button></a>
     </div>
         <a href="{{ path('sortie_ajouter_ville') }}"><button id="ville_btn">+</button></a>
         <a href="{{ path('sortie_ajouter_lieu') }}"><button class="btn" id="lieu_btn">+</button></a>
