@@ -311,13 +311,13 @@ input[type=checkbox]{
     padding: 3px 0px;
 
 }
-.sisi form {
+.sortie_form form {
     grid-template-columns: 1fr 1fr;
     display: grid;
     grid-column-gap: 10rem;
 }
 
-.sisi form button{
+.sortie_form form button{
     position: relative;
     left : calc(50% + 80px);
 }
@@ -348,6 +348,37 @@ input[type=checkbox]{
     .l_header h1{
         text-align: center;
     }
+}
+
+@media screen and (max-width:680px){
+    .sortie_form form{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .sortie_form form button{
+        left: 0;
+    }
+
+    #sortie_ville, #sortie_lieu{
+        width: 80%;
+    }
+
+    #ville_btn{
+        top: -462px;
+        right: -103px;
+    }
+
+    #lieu_btn{
+        top: -440px;
+        right: -103px;
+    }
+
+    h2{
+        text-align: center;
+    }
+
+
 }
 
 
