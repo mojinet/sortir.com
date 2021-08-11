@@ -4,7 +4,7 @@
     <h2>Ajouter un lieu</h2>
     {{ form_start(lieuForm) }}
     {{ form_widget(lieuForm) }}
-    <button class="btn btn-primary">Ajouter</button>
+    <a href="{{ path('sortie_create') }}"><button class="btn btn-primary">Ajouter</button></a>
     {{ form_end(lieuForm) }}
 {% endblock %}
 
