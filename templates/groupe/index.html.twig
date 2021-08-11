@@ -30,7 +30,7 @@
                     </td>
                     <td>
                         <a href="{{ path('groupe_ajouter-membre', {'id': groupe.id}) }}"><button class="btn">Gestion des membres</button></a>
-                        <a href="{{ path('groupe_suprimer-group', {'idGroupe': groupe.id}) }}"><button class="btn">Supprimer groupe</button></a>
+                        <a href="{{ path('groupe_suprimer-group', {'idGroupe': groupe.id}) }}" onclick="return confirm('Voulez vous supprimer votre groupe')"><button class="btn">Supprimer groupe</button></a>
                     </td>
                 </tr>
                 {% endif %}
