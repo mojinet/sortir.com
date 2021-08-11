@@ -5,7 +5,7 @@
     <h2>Ajouter une ville</h2>
     {{ form_start(villeForm) }}
     {{ form_widget(villeForm) }}
-    <button class="btn btn-primary">Ajouter</button>
+    <a href="{{ path('sortie_create') }}"><button class="btn btn-primary">Ajouter</button></a>
     {{ form_end(villeForm) }}
 {% endblock %}
 
