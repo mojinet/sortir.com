@@ -224,10 +224,26 @@ input[type=checkbox]{
 
 /*PROFIL*/
 .article-miniature{
-    width :25rem;
+    width :75%;
     border-radius : 15rem;
 }
-
+.profil-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 4rem auto;
+    width :65%;
+}
+.profil-avatar-img{
+    display : block;
+    margin: 0 auto;
+    width :50%;
+}
+.profil-avatar{
+    border-left: 1px solid #B82E5E;
+}
+.profil-info{
+    margin: 1rem auto;
+}
 
 /*Flash message*/
 .flash{
@@ -446,6 +462,19 @@ input[type=checkbox]{
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    .profil-container{
+        grid-template-columns: 1fr;
+        width :80%;
+    }
+    .profil-info{
+        grid-row-start : 2;
+        display : block;
+        margin: 2rem auto;
+    }
+    .profil-avatar{
+        border : none;
+        width : 100%;
     }
 
 

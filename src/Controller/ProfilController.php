@@ -82,7 +82,7 @@ class ProfilController extends AbstractController
             if($request->request->get('pass') == $request->request->get('passConf')){
                 $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
                 $em->flush();
-                $this->addFlash('message','Mot de passe mis a jour avec succes');
+                $this->addFlash('success','Mot de passe mis a jour avec succes');
                 return $this->redirectToRoute('profil_home', ['id' => $user->getId()]);
             }else{
                 $this->addFlash('message', "Les deux mots de passe ne sont pas identiques");
