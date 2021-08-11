@@ -25,9 +25,9 @@
     {% if app.user == user %}
         <h2>Modification</h2>
         <div class="panelButton">
-            <button class="btn"><a href="{{ path('profil_modify') }}">Modifier le profil</a> </button>
-            <button class="btn"><a href="{{ path('profil_modifyPassword') }}">Modifier le Mot de passe</a> </button>
-            <button class="btn"><a href="{{ path('profil_delete', {'id': app.user.id }) }}" onclick="return confirm('Voulez vous supprimer votre compte')">Supprimer le profil </a> </button>
+            <a href="{{ path('profil_modify') }}"><button class="btn">Modifier le profil</button></a>
+            <a href="{{ path('profil_modifyPassword') }}"><button class="btn">Modifier le Mot de passe</button></a>
+            <a href="{{ path('profil_delete', {'id': app.user.id }) }}" onclick="return confirm('Voulez vous supprimer votre compte')"><button class="btn">Supprimer le profil</button></a>
         </div>
     {% endif %}
 

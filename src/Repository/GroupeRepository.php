@@ -19,32 +19,14 @@ class GroupeRepository extends ServiceEntityRepository
         parent::__construct($registry, Groupe::class);
     }
 
-    // /**
-    //  * @return Groupe[] Returns an array of Groupe objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('g.id', 'ASC')
-            ->setMaxResults(10)
+    public function findAllByUser($id){
+        $query = $this
+            ->createQueryBuilder('g')
+            ->join('g.organisateur', 'o')
+            ->andWhere('o.id = :id')
+            ->setParameter(':id', $id)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+        return $query;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Groupe
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
