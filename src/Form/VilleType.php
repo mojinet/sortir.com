@@ -12,9 +12,18 @@ class VilleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('codePostal')
-        ;
+        ->add('nom', null,[
+            'label' => 'Ville',
+            'required' => true,
+            'attr' =>[
+                'class' => 'form-control']
+        ])
+        ->add('codePostal', null,[
+            'label' => 'Code Postal',
+            'required' => true,
+            'attr' =>[
+                'class' => 'form-control']
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

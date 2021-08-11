@@ -15,7 +15,8 @@ class AddMemberCSVType extends AbstractType
         $builder
             ->add('csvFile', FileType::class, [
                 'label' => 'Votre fichier format csv',
-
+                'attr' =>[
+                    'class' => 'form-control'],
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
 
