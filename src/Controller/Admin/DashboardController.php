@@ -19,7 +19,7 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('bundles/EasyAdmin/welcome.html.twig');
     }
 
     public function configureDashboard(): Dashboard

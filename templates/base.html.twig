@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="icon" href="{{ asset('img/icon/favicon.ico') }}" />
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="{{ asset('js/app.js') }}" defer></script>
         {% block meta %}{% endblock %}
         <title>{% block title %}Sortir.com{% endblock %}</title>
@@ -53,4 +54,8 @@
             </footer>
         </div>
     </body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </html>

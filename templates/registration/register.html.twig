@@ -3,10 +3,21 @@
 {% block title %}{{ parent() }} | Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>S'inscrire</h1>
+    <div class="login-block">
+        <div class="container-logo-register">
+            <img class="logo-login"
+                 data-aos="flip-left"
+                 data-aos-easing="ease-out-cubic"
+                 data-aos-duration="2000"
+                 src="{{ asset('img/icon/register-logo.png') }}" alt="">
+        </div>
+        <div class="register-form">
+            {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
+                <button type="submit" class="btn">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_widget(registrationForm) }}
-        <button type="submit" class="btn">S'inscrire</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}
