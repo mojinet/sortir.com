@@ -4,6 +4,9 @@
     <a href="{{ path('groupe_main') }}"><button class="btn">Retour</button></a>
     <h2>Groupe : {{ groupe.nom }}</h2>
     <h3>Liste des membres actuel</h3>
+    {% if groupe.participants|length == 0 %}
+        Aucun membre(s) trouvé(s) 😅
+    {% else %}
         <table class="table table-sm mainTable">
             <thead>
             <tr>
@@ -17,11 +20,10 @@
                     <td>{{ membre.pseudo }}</td>
                     <td><a href="{{ path('groupe_supprimer-membre-group', {'idGroupe': groupe.id, 'idMembre': membre.id}) }}"><button class="btn">Supprimer</button></a></td>
                 </tr>
-            {% else %}
-                Aucun membre trouvé
             {% endfor %}
             </tbody>
         </table>
+    {% endif %}
     <h3>Ajouter un membre</h3>
     <div class="fullFlex">
         <table class="table table-sm mainTable">

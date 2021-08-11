@@ -57,7 +57,15 @@ class GroupeController extends AbstractController
     {
         $membres = $participantRepository->findAll();
         $groupe = $groupeRepository->find($id);
+        $groupeP = $groupe->getParticipants();
 
+        foreach ($membres as $membre){
+            foreach ($groupeP as $i => $membreGroup){
+                if ($membre === $membreGroup){
+                    unset($membres[$i]);
+                }
+            }
+        }
         return $this->render('groupe/addMembre.html.twig',[
             "membres" => $membres,
             "groupe" => $groupe
