@@ -9,20 +9,14 @@
                     <h5>Sortie annulée 😱</h5>
                     <p>{{ sortie.infosSortie }}</p>
                 {% else %}
+                    <p>Cette sortie d'une durée de {{ sortie.duree }} minutes est prévu pour le {{ sortie.dateHeureDebut|date('d/m/y') }} et vous avez jusqu'au {{ sortie.dateLimiteInscription|date('d/m/y') }} dans la limite de {{ sortie.nbInscriptionMax }} personnes pour vous y inscrire, apres il sera trop tard 😱</p>
 
-                <li class="miniTitle">Date et heure de la sortie : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.dateHeureDebut | date }}</span></li>
-                <li class="miniTitle">Date limite d'inscription : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.dateLimiteInscription | date }}</span></li>
-                <hr>
-                <li class="miniTitle">Nombre de places : <span class="miniDescription">{{ sortie.nbInscriptionMax }}</span></li>
-                <li class="miniTitle">Durée : <span class="miniDescription">{{ sortie.duree }} mn</span></li>
-                <li class="miniTitle">Description et infos : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.infosSortie }}</span></li>
-                <li class="miniTitle">Campus: <span class="miniDescription">{{ sortie.campus.nom }}</span></li>
-                <hr>
-                <li class="miniTitle">Adresse :</li>
-                <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.nom }}</li>
-                <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.rue }}</li>
-                <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.ville.codePostal }}{{ sortie.lieu.ville.nom }}</li>
-                <li class="miniTitle">Coordonnées GPS :<span class="miniDescription">{{ sortie.lieu.latitude }}/{{ sortie.lieu.longitude }}</span></li>
+                    <li class="miniTitle">Description : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.infosSortie }}</span></li>
+
+                    <li class="miniTitle">Adresse :</li>
+                    <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.nom }}</li>
+                    <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.rue }}</li>
+                    <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.ville.codePostal }}{{ sortie.lieu.ville.nom }}</li>
                 {% endif %}
             </ul>
         </div>
