@@ -5,10 +5,11 @@
 {% block body %}
     <h2>Liste des sorties</h2>
     <div class="filterForm">
-        {{ form_start(filterForm) }}
-        {{ form_widget(filterForm) }}
-
-        {{ form_end(filterForm) }}
+        {% if app.user %}
+            {{ form_start(filterForm) }}
+            {{ form_widget(filterForm) }}
+            {{ form_end(filterForm) }}
+        {% endif %}
     </div>
     <table class="table table-sm mainTable">
     <thead>
