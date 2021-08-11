@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% if editMode %}
+    <h2>Modifier la sortie</h2>
+    {% else %}
     <h2>Créer une nouvelle sortie</h2>
-
+    {% endif %}
     <div class="sortie_form">
         {{ form_start(sortieForm) }}
 
@@ -16,8 +19,6 @@
 
         {{ form_row(sortieForm.ville) }}
         {{ form_row(sortieForm.lieu) }}
-        {{ form_row(sortieForm.rue) }}
-        {{ form_row(sortieForm.code_postal) }}
         {{ form_row(sortieForm.latitude) }}
         {{ form_row(sortieForm.longitude) }}
 

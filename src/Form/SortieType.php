@@ -71,18 +71,6 @@ class SortieType extends AbstractType
                 'attr' =>[
                     'class' => 'form-control']
             ])
-            ->add('rue', TextType::class, [
-                'label' => 'rue',
-                'mapped' => false,
-                'attr' =>[
-                    'class' => 'form-control']
-            ])
-            ->add('code_postal', TextType::class, [
-                'label' => 'code postal',
-                'mapped' => false,
-                'attr' =>[
-                    'class' => 'form-control']
-            ])
             ->add('latitude', NumberType::class, [
                 'label' => 'latitude',
                 'required' => false,

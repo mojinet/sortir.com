@@ -5,11 +5,13 @@
 {% block body %}
     <h2>Liste des sorties</h2>
     <div class="filterForm">
-        {{ form_start(filterForm) }}
-        {{ form_widget(filterForm) }}
-
-        {{ form_end(filterForm) }}
+        {% if app.user %}
+            {{ form_start(filterForm) }}
+            {{ form_widget(filterForm) }}
+            {{ form_end(filterForm) }}
+        {% endif %}
     </div>
+    {% if sorties|length != 0 %}
     <table class="table table-sm mainTable">
     <thead>
     <tr>
@@ -49,9 +51,10 @@
                         {% endif %}
                     </td>
                 </tr>
-        {% else %}
-            <p>Aucune sortie de prévu !</p>
-        {% endfor %}
+            {% endfor %}
+    {% else %}
+        <span class="mb-3 mt-3">Aucune sortie trouvé 😔</span>
+    {% endif %}
     </tbody>
     </table>
     {% if app.user %}

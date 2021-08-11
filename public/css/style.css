@@ -301,7 +301,7 @@ input[type=checkbox]{
     border-radius: 50px;
     transition-duration: 0.5s;
     border : 1px solid #2eb888;
-    top: -281px;
+    top: -215px;
     right: 54px;
     position: relative;
     text-align: center;
@@ -315,7 +315,7 @@ input[type=checkbox]{
     border-radius: 50px;
     transition-duration: 0.5s;
     border : 1px solid #2eb888;
-    top: -321px;
+    top: -255px;
     right: -355px;
     position: relative;
     text-align: center;
@@ -426,12 +426,12 @@ input[type=checkbox]{
     }
 
     #ville_btn{
-        top: -462px;
+        top: -339px;
         right: -103px;
     }
 
     #lieu_btn{
-        top: -440px;
+        top: -317px;
         right: -103px;
     }
 

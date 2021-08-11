@@ -10,9 +10,7 @@
                     <p>{{ sortie.infosSortie }}</p>
                 {% else %}
                     <p>Cette sortie d'une durée de {{ sortie.duree }} minutes est prévu pour le {{ sortie.dateHeureDebut|date('d/m/y') }} et vous avez jusqu'au {{ sortie.dateLimiteInscription|date('d/m/y') }} dans la limite de {{ sortie.nbInscriptionMax }} personnes pour vous y inscrire, apres il sera trop tard 😱</p>
-
                     <li class="miniTitle">Description : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.infosSortie }}</span></li>
-
                     <li class="miniTitle">Adresse :</li>
                     <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.nom }}</li>
                     <li class="miniDescription"><span class="tabulation"></span>{{ sortie.lieu.rue }}</li>
