@@ -36,7 +36,7 @@
                             <a href="{{ path('sortie_details', {'id': sortie.id}) }}">Afficher</a>
                         {% endif %}
 
-                        {% if app.user %}
+                        {% if app.user  and sortie.etat.libelle != 'Annuler'%}
                             {% if imIn[sortie.id] %}
                                 {% if sortie.dateHeureDebut > date('now') %}
                                     <a href="{{ path('main_desister', {'id': sortie.id}) }}">Se desister</a>
