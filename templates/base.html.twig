@@ -38,7 +38,7 @@
             {# lecture et affichage des messages flash #}
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="flash flash-{{ label }}">
+                    <div id="flash-id" class="flash flash-{{ label }}">
                         {{ message }}
                     </div>
                 {% endfor %}

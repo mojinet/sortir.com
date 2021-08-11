@@ -350,7 +350,7 @@ input[type=checkbox]{
     }
 }
 
-@media screen and (max-width:538px){
+@media screen and (max-width:600px){
     .l_header{
         justify-content: center;
     }
@@ -410,9 +410,6 @@ input[type=checkbox]{
         margin: 1rem auto;
     }
 
-}
-
-@media screen and (max-width:680px){
     .sortie_form form{
         display: grid;
         grid-template-columns: 1fr;
@@ -438,6 +435,15 @@ input[type=checkbox]{
 
     h2{
         text-align: center;
+    }
+    /* PROFIL */
+    .fullFlex{
+        flex-direction: column-reverse;
+    }
+    .fullFlex div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
 
