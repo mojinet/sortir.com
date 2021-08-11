@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Mes groupes</h1>
-    {% if app.user.groupes|length == 0 %}
+    {% if groupes|length == 0 or groupes == null %}
         Aucun groupe créer, mais tout peux s'arranger 😀
     {% else %}
         <div class="fullFlex">
