@@ -7,11 +7,13 @@ use App\Form\EditProfilType;
 use App\Repository\ParticipantRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 /**
@@ -22,7 +24,7 @@ class ProfilController extends AbstractController
     /**
      * @Route("/modifier", name="modify")
      */
-    public function modify(Request $request, ParticipantRepository $participantRepository): Response
+    public function modify(Request $request, ParticipantRepository $participantRepository, SluggerInterface $slugger): Response
     {
         $user = $this->getUser();
 
@@ -32,6 +34,28 @@ class ProfilController extends AbstractController
         $user = $participantRepository->findOneBy(["email" => $this->getUser()->getUsername()]);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('photoProfil')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFile->move(
+                        $this->getParameter('miniature_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $user->setPhotoProfil($newFilename);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
