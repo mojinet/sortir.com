@@ -169,9 +169,10 @@ input:focus{
 }
 
 input[type=checkbox]{
-    width: 20px;
+    width: 20px !important;
     height: 20px;
 }
+
 
 #filter{
     display: flex;
