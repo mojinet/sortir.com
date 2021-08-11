@@ -4,12 +4,12 @@
     <div class="fullFlex">
         <div>
             <h2>
-                <h2>{{ sortie.nom }}
+                <h2>{{ sortie.nom }}</h2>
                 {% if sortie.etat.libelle is same as ('Annuler') %}
-                    annulée :(</h2>
-                    <p>Motif : {{ sortie.infosSortie }}</p>
+                    <h5>Sortie annulée 😱</h5>
+                    <p>{{ sortie.infosSortie }}</p>
                 {% else %}
-                </h2>
+
                 <li class="miniTitle">Date et heure de la sortie : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.dateHeureDebut | date }}</span></li>
                 <li class="miniTitle">Date limite d'inscription : <span class="miniDescription"><br> <span class="tabulation"></span>{{ sortie.dateLimiteInscription | date }}</span></li>
                 <hr>
