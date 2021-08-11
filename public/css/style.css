@@ -160,6 +160,16 @@ input:focus{
     justify-content: center;
     flex-wrap: wrap;
     gap : 20px;
+    margin-right : 3rem;
+}
+.point-com{
+    color : #F40000;
+}
+.logo-title{
+    font-size :3rem;
+}
+.logo-title a {
+    font-weight : normal!important;
 }
 
 /* formulaire des filtres */
