@@ -114,25 +114,7 @@ input:focus{
     color: white;
     padding : 10px;
 }
-@media screen and (max-width:1065px){
-    h2{
-        margin-top : 30px;
-        width: 100%;
-    }
-    table{
-        width: 100%;
-        overflow: hidden;
-    }
-}
 
-@media screen and (max-width:538px){
-    .l_header{
-        justify-content: center;
-    }
-    .l_header h1{
-        text-align: center;
-    }
-}
 
 .l_main{
     display: flex;
@@ -170,6 +152,13 @@ input:focus{
 }
 .logo-title a {
     font-weight : normal!important;
+}
+
+.nav_header a:hover {
+    transition-duration: .3s;
+    transition-delay: .1s;
+    font-size: 1.2em;
+    text-decoration: underline;
 }
 
 /* formulaire des filtres */
@@ -347,6 +336,28 @@ input[type=checkbox]{
     width: 16rem;
     margin: 1rem auto;
     display: block;
+}
+
+/* ------ MEDIA QUERIES -------- */
+
+@media screen and (max-width:1065px){
+    h2{
+        margin-top : 30px;
+        width: 100%;
+    }
+    table{
+        width: 100%;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width:538px){
+    .l_header{
+        justify-content: center;
+    }
+    .l_header h1{
+        text-align: center;
+    }
 }
 
 
