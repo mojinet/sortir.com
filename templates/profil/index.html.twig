@@ -5,13 +5,16 @@
 {% block body %}
 
     <h1>{% if app.user == user %} Mon profil {% else %} Profil {% endif %}</h1>
-    <div class="fullFlex">
-        <div>
-            <p class="miniTitle">Avatar</p>
+    <div class="profil-container">
+        <div class="profil-info">
+
             {% if user.photoProfil == null %}
                 Aucune photo de profil :(
             {% else %}
-                <img src="{{ asset('img/miniature/' ~ user.photoProfil) }}" alt="" class="article-miniature mb-5">
+                <img src="{{ asset('img/miniature/' ~ user.photoProfil) }}"
+
+                     alt=""
+                     class="article-miniature mb-5">
             {% endif %}
             <p class="miniTitle">Pseudo <span class="miniDescription">{{ user.pseudo }}</span></p>
             <p class="miniTitle">Identitée <span class="miniDescription">{{ user.prenom }} {{ user.nom }}</span></p>
@@ -19,7 +22,14 @@
 
 
         </div>
-        <img src="{{ asset('img/icon/Profile data-bro.png') }}" alt="">
+        <div class="profil-avatar">
+            <img class="profil-avatar-img"
+                 data-aos="flip-left"
+                 data-aos-easing="ease-out-cubic"
+                 data-aos-duration="2000"
+                 src="{{ asset('img/icon/Profile data-bro.png') }}" alt="">
+        </div>
+
     </div>
 
     {% if app.user == user %}
