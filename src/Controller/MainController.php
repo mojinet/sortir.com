@@ -64,17 +64,22 @@ class MainController extends AbstractController
             10
 
         );
-        $imIn[$sortie->getId()] = false;
-        // determine si l'utilisateur connecter participe au sortie affiché
-        foreach ($sorties as $sortie){
-            // convertie l'arrayCollection en simple array
-            $participantsArray = $sortie->getParticipants()->toArray();
+
+        $imIn = null;
+        if($sorties[0]){
             $imIn[$sortie->getId()] = false;
-            // recherche si notre user est contenu dans la liste des participants
-            if( in_array($this->getUser(), $participantsArray)){
-                $imIn[$sortie->getId()] = true;
+            // determine si l'utilisateur connecter participe au sortie affiché
+            foreach ($sorties as $sortie){
+                // convertie l'arrayCollection en simple array
+                $participantsArray = $sortie->getParticipants()->toArray();
+                $imIn[$sortie->getId()] = false;
+                // recherche si notre user est contenu dans la liste des participants
+                if( in_array($this->getUser(), $participantsArray)){
+                    $imIn[$sortie->getId()] = true;
+                }
             }
         }
+
 
         return $this->render('main/index.html.twig', [
             "sorties" => $sorties,

@@ -57,9 +57,8 @@ class SortieRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('s');
         if($mots != null){
-            //todo : duplicate key à cause de ça, voir pour retablir autrement
-//            $query->where('MATCH_AGAINST(s.nom, s.infosSortie) AGAINST (:mots boolean)>0')
-//                ->setParameter('mots', $mots);
+            $query->where('MATCH_AGAINST(s.nom, s.infosSortie) AGAINST (:mots boolean)>0')
+                ->setParameter('mots', $mots);
         }
         if($campus != null){
             $query->leftJoin('s.campus', 'c');
